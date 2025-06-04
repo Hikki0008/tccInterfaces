@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Care - Cadastro</title>
+    <link rel="stylesheet" href="/assents/css/TipoCadastro.css">
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <img src="logo.png" alt="Logo Age Care">
+    </div>
+    <h1>Como você deseja se cadastrar?</h1>
+    <p class="subtitle">Escolha uma opção para continuar o cadastro no <strong>Age Care</strong></p>
+
+    <div class="options">
+        <div class="option" onclick="selectOption('pessoaFisica')" id="pessoaFisica">
+            <h2>Pessoa Física</h2>
+            <p>Sou responsável, familiar ou contratante do serviço</p>
+        </div>
+
+        <div class="option" onclick="selectOption('empresa')" id="empresa">
+            <h2>Empresa / Instituição</h2>
+            <p>Cadastro com CNPJ</p>
+        </div>
+
+        <div class="option" onclick="selectOption('profissional')" id="profissional">
+            <h2>Profissional</h2>
+            <p>Sou cuidador, técnico de enfermagem ou enfermeiro(a)</p>
+        </div>
+    </div>
+
+    <button id="continueBtn" disabled>Continuar</button>
+
+    <p class="help"><a href="#">Dúvidas sobre cada perfil?</a></p>
+</div>
+
+<script src="../assents/js/TipoCadastro.js"></script>
+</body>
+</html>

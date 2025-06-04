@@ -1,0 +1,45 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.input-row .input-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+label {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+input, select, textarea {
+    background-color: #242424;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}

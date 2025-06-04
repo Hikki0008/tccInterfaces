@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+}
+
+.logo img {
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option {
+    background-color: #242424;
+    border: 2px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: border 0.3s, background 0.3s;
+}
+
+.option:hover {
+    border-color: #007BFF;
+}
+
+.option.selected {
+    border-color: #007BFF;
+    background-color: #1a1a1a;
+}
+
+.option h2 {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.option p {
+    font-size: 12px;
+    color: #b0b0b0;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+    background-color: #005fcc;
+}
+
+.help {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.help a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.help a:hover {
+    text-decoration: underline;
+}

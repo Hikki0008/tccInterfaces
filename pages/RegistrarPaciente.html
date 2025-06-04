@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Care - Registro de Paciente</title>
+  <link rel="stylesheet" href="/assents/css/RegistrarPaciente.css">
+</head>
+<body>
+<div class="container">
+  <h1>Cadastro de Paciente</h1>
+  <p class="subtitle">Preencha os dados do paciente para prosseguir</p>
+
+  <form id="patientForm">
+    <div class="input-group">
+      <label>Nome completo</label>
+      <input type="text" required>
+    </div>
+
+    <div class="input-row">
+      <div class="input-group">
+        <label>Data de nascimento</label>
+        <input type="date" required>
+      </div>
+      <div class="input-group">
+        <label>CPF</label>
+        <input type="text" placeholder="Opcional">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Sexo</label>
+      <select required>
+        <option value="">Selecione</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="outro">Outro</option>
+        <option value="prefiro">Prefiro não informar</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Telefone / Contato</label>
+      <input type="tel" required>
+    </div>
+
+    <div class="input-group">
+      <label>E-mail (opcional)</label>
+      <input type="email">
+    </div>
+
+    <div class="input-group">
+      <label>Endereço</label>
+      <input type="text" placeholder="CEP" required>
+      <input type="text" placeholder="Rua" required>
+      <input type="text" placeholder="Número" required>
+      <input type="text" placeholder="Complemento">
+      <input type="text" placeholder="Bairro" required>
+      <input type="text" placeholder="Cidade" required>
+      <input type="text" placeholder="Estado" required>
+    </div>
+
+    <div class="input-group">
+      <label>Comorbidades / Condições médicas</label>
+      <textarea rows="3" placeholder="Diabetes, Hipertensão, etc."></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Observações adicionais</label>
+      <textarea rows="3" placeholder="Alergias, restrições, etc."></textarea>
+    </div>
+
+    <button type="submit">Cadastrar Paciente</button>
+  </form>
+</div>
+
+<script src="../assents/js/RegistrarPaciente.js"></script>
+</body>
+</html>
