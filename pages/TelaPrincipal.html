@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Care - Painel Principal</title>
+    <link rel="stylesheet" href="../assents/css/TelaPrincipal.css">
+</head>
+<body>
+<header>
+    <div class="logo">Age Care</div>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Profissionais</a>
+        <a href="#">Pacientes</a>
+        <a href="#">Agendamentos</a>
+    </nav>
+    <div class="user-avatar">
+        <img src="https://via.placeholder.com/40" alt="Usuário">
+    </div>
+</header>
+
+<main>
+    <section class="welcome">
+        <h1>Bem-vindo(a) ao Age Care 👋</h1>
+        <p>O que você precisa hoje?</p>
+    </section>
+
+    <section class="search-bar">
+        <input type="text" placeholder="Buscar profissionais, serviços ou pacientes...">
+    </section>
+
+    <section class="cards">
+        <div class="card" onclick="openModule('agendamento')">
+            <h3>Agendar Atendimento</h3>
+        </div>
+        <div class="card" onclick="openModule('profissionais')">
+            <h3>Visualizar Profissionais</h3>
+        </div>
+        <div class="card" onclick="openModule('pacientes')">
+            <h3>Meus Pacientes</h3>
+        </div>
+        <div class="card" onclick="openModule('historico')">
+            <h3>Histórico</h3>
+        </div>
+    </section>
+
+    <section class="summary">
+        <h2>Resumo do Dia</h2>
+        <ul>
+            <li>🕒 09:00 - Atendimento a João Silva</li>
+            <li>🕒 14:00 - Consulta com Ana Costa</li>
+        </ul>
+    </section>
+</main>
+
+<script src="../assents/js/TelaPrincipal.js"></script>
+</body>
+</html>

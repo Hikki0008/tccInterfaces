@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f1f1f;
+    padding: 15px 30px;
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00aaff;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00aaff;
+}
+
+.user-avatar img {
+    border-radius: 50%;
+}
+
+main {
+    padding: 30px;
+}
+
+.welcome h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.welcome p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px;
+    background: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #00aaff;
+    background-color: #151515;
+}
+
+.card h3 {
+    color: #fff;
+    font-size: 16px;
+}
+
+.summary h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.summary ul {
+    list-style: none;
+}
+
+.summary li {
+    background: #1e1e1e;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+}
