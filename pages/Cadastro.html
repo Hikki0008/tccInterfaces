@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro | Age Care</title>
-  <link rel="stylesheet" href="../assents/css/index.css">
+<html lang="pt-br"> <head>
+    <meta charset="UTF-8"> 
+    <title>Cadastro</title> 
+    <link rel="stylesheet" href="../assents/css/Cadastro.css">
 </head>
-<body>
-  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️</button>
+<body class="bg-light p-3"> <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow mt-5">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-4">Cadastro de Usuário</h4>
 
-  <div class="container">
-    <div class="header">
-      <h1>Age Care</h1>
+                        <form onsubmit="cadastrarFuncionario(event)">
+                            <div class="mb-3">
+                                <label class="form-label" for="nome">Nome</label> <input type="text" class="form-control" id="nome" name="nome" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Email</label> <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="senha">Senha</label> <input type="password" class="form-control" id="senha" name="senha" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="cep">CEP</label> <input type="text" id="cep" name="cep" class="form-control" maxlength="9" required>
+                                <div id="erro-cep" class="text-danger small mt-1"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="endereco">Endereço</label> <input type="text" id="endereco" name="endereco" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="numero">Número</label> <input type="text" class="form-control" id="numero" name="numero" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="bairro">Bairro</label> <input type="text" id="bairro" name="bairro" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="cidade">Cidade</label> <input type="text" id="cidade" name="cidade" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="estado">Estado</label> <input type="text" id="estado" name="estado" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="logo">
-      <img src="../assents/images/logo.png" alt="Logo">
-    </div>
-
-    <button class="toggle-role">PARCEIRO</button>
-
-    <div class="title">CADASTRO <small>CLIENTE</small></div>
-
-    <div class="input-group">
-      <img src="https://img.icons8.com/ios-glyphs/30/user--v1.png" alt="User Icon">
-      <input type="text" id="nome" placeholder="Digite seu nome">
-    </div>
-
-    <div class="input-group">
-      <img src="https://img.icons8.com/ios-glyphs/30/new-post.png" alt="Email Icon">
-      <input type="email" id="email" placeholder="Digite seu email">
-    </div>
-
-    <div class="input-group">
-      <img src="https://img.icons8.com/ios-glyphs/30/lock--v1.png" alt="Password Icon">
-      <input type="password" id="senha" placeholder="Digite sua senha">
-    </div>
-
-    <button class="btn-submit" id="btnCadastrar">Finalizar Cadastro</button>
-
-    <div class="separator">OU</div>
-
-    <button class="btn-google">Entrar com o Google</button>
-
-    <div class="footer-note">JÁ TEM UMA CONTA</div>
-    <button class="btn-login">FAÇA LOGIN</button>
-
-    <div id="confirmation" class="confirmation"></div>
-  </div>
-
-  <script src="../assents/js/cadastro.js"></script>
+    <script src="../assents/js/Viacep.js"></script>
+    <script src="../../../IdeaProjects/Atividadeconsumindo/interfaceConsumindo/src/main/js/Cadastro.js"></script>
 </body>
 </html>
