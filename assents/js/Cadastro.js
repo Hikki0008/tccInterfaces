@@ -1,44 +1,76 @@
-function cadastrarFuncionario(event){
+function cadastrar(event) {
     event.preventDefault();
-    const nome = document.getElementById('idnome').value;
-    const email = document.getElementById('idemail').value;
-    const senha = document.getElementById('idsenha').value;
-    const cep = document.getElementById('idcep').value;
-    const endereco = document.getElementById('idendereco').value;
-    const numero = document.getElementById('idnumero').value;
-    const bairro = document.getElementById('idbairro').value;
-    const cidade = document.getElementById('idcidade').value;
-    const estado = document.getElementById('idestado').value;
+
+    const nome = document.getElementById('idnome').value.trim();
+    const cpf = document.getElementById('idcpf').value.trim();
+    const email = document.getElementById('idemail').value.trim();
+    const senha = document.getElementById('idsenha').value.trim();
 
 
-if(nome&&email&&senha&&cep&&endereco&&numero&&bairro&&cidade&estado){
-
-
-    document.getElementById('idnome').value ="";
-    document.getElementById('idemail').value = "";
-    document.getElementById('idsenha').value = "";
-    document.getElementById('idcep').value = "";
-    document.getElementById('idendereco').value = "";
-    document.getElementById('idnumero').value = "";
-    document.getElementById('idbairro').value = "";
-    document.getElementById('idcidade').value = "";
-    document.getElementById('idestado').value = "";
-
-fetch('http://localhost:8080/ai/funcionarios', {
-    method :'POST',
-    Headers: {
-        'content-type': 'application/json'
-    },
-    ReportBody: JSON.stringify({"nome":nome,"email":email,"senha": senha, "cep": cep,"endereco": endereco,
-        "numero": numero, "bairro": bairro, "cidade": cidade, "estado": estado})
-    })
-.then(response=> response.json())
-.then(data => {
-    console.log("Resposta da API:", data);
-})
-.catch(error => {
-    console.log("erro ao enviar dados:", error);
-        });
+    if (!nome || !cpf || !email || !senha) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
     }
+
+
+    if (cpf.length < 11) {
+        alert("CPF deve ter pelo menos 11 dígitos.");
+        return;
+    }
+
+    if (senha.length < 6) {
+        alert("Senha deve ter pelo menos 6 caracteres.");
+        return;
+    }
+
+
+    const submitBtn = document.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Cadastrando...";
+
+
+    fetch('http://localhost:8080/ai/Usuario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "nome": nome,
+            "cpf": cpf,
+            "email": email,
+            "senha": senha
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Resposta da API:", data);
+            alert("Usuário cadastrado com sucesso!");
+
+            document.getElementById('idnome').value = "";
+            document.getElementById('idcpf').value = "";
+            document.getElementById('idemail').value = "";
+            document.getElementById('idsenha').value = "";
+        })
+        .catch(error => {
+            console.error("Erro ao enviar dados:", error);
+            alert("Erro ao cadastrar usuário. Verifique sua conexão e tente novamente.");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Cadastrar";
+        });
 }
-document.getElementById("formcadastro").addEventListener("submit",cadastrarFuncionario)
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById("formcadastro");
+    if (form) {
+        form.addEventListener("submit", cadastrar);
+    } else {
+        console.error("Formulário com ID 'formcadastro' não encontrado!");
+    }
+});
