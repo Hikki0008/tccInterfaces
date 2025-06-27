@@ -1,0 +1,514 @@
+/* General Body and Container */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 20px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #007bff; /* Sympla's blue-ish color */
+}
+
+/* Main Content */
+.main-content {
+    padding: 30px 0;
+}
+
+/* Service Details Card */
+.service-details-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.service-image {
+    flex: 0 0 300px; /* Fixed width for the image */
+    background-color: #e9ecef; /* Placeholder background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.service-info {
+    flex-grow: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.service-info h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.service-meta {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.share-button {
+    text-align: right;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.share-button button {
+    background-color: #007bff; /* Sympla's blue-ish color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.share-button button:hover {
+    background-color: #0056b3;
+}
+
+/* Section Styling */
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+section h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Description Section */
+.description-section p {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.description-section .read-more {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.description-section .read-more:hover {
+    text-decoration: underline;
+}
+
+/* Scheduling Section - Date Picker */
+.date-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.date-picker .arrow {
+    background: none;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 24px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.date-picker .arrow:hover {
+    background-color: #eee;
+    border-color: #bbb;
+}
+
+.date-items {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 15px;
+    padding-bottom: 10px; /* For scrollbar */
+}
+
+.date-item {
+    flex: 0 0 auto; /* Prevent stretching */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px; /* Ensure a minimum width */
+    scroll-snap-align: start;
+}
+
+.date-item.selected {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+    background-color: #e7f3ff;
+}
+
+.date-item:hover:not(.selected) {
+    border-color: #a3d4ff;
+    background-color: #f0f8ff;
+}
+
+.date-item .day-of-week {
+    font-size: 14px;
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.date-item .day-of-month {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    display: block;
+}
+
+.date-item .time {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Service Types */
+.service-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.service-type-card {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px); /* Two cards per row, adjust for gap */
+    max-width: calc(50% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.service-type-card h4 {
+    font-size: 18px;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.service-type-card .price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.service-type-card .details {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Pushes button to bottom */
+}
+
+.service-type-card .add-to-cart {
+    background-color: #28a745; /* Green for add to cart */
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.service-type-card .add-to-cart:hover {
+    background-color: #218838;
+}
+
+/* Total Price Section */
+.total-price-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.total-price-section .total-label {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+}
+
+.total-price-section .total-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0;
+}
+
+.total-price-section .buy-button {
+    background-color: #ff7f00; /* Orange-ish color, similar to Sympla's buy button */
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.total-price-section .buy-button:hover {
+    background-color: #e67300;
+}
+
+/* Payment Methods Section */
+.payment-methods-section .payment-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.payment-methods-section .payment-icons img {
+    height: 30px; /* Adjust as needed */
+    width: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.payment-methods-section .more-options {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.payment-methods-section .more-options:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.security-info, .help-info {
+    flex: 1 1 45%; /* Adjust width for two columns */
+    min-width: 280px; /* Minimum width before wrapping */
+}
+
+.footer h4 {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #bbb;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.security-logos {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.security-logos img {
+    height: 30px;
+    width: auto;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-details-card {
+        flex-direction: column;
+    }
+
+    .service-image {
+        width: 100%;
+        flex: none;
+        max-height: 250px;
+        overflow: hidden;
+    }
+
+    .service-info {
+        padding: 20px;
+    }
+
+    .service-info h2 {
+        font-size: 24px;
+    }
+
+    .date-items {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .date-item {
+        min-width: 90px;
+        padding: 10px 15px;
+    }
+
+    .service-types {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-type-card {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .security-info, .help-info {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav ul {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .share-button {
+        text-align: center;
+    }
+
+    .total-price-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .total-price-section .total-label,
+    .total-price-section .total-value {
+        text-align: center;
+    }
+
+    .total-price-section .buy-button {
+        width: 100%;
+    }
+}
