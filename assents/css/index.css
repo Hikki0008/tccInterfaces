@@ -1,0 +1,450 @@
+/* =================================
+   BASE E ESTILO GLOBAL AGECARE
+   ================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px; /* Aumentado para melhor visualização dos cards */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main {
+    padding-left: 45px; /* Espaço para a aba lateral */
+}
+
+/* =================================
+   HEADER UNIFICADO
+   ================================= */
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #007bff;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1c3d5a;
+    margin: 0;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav ul li {
+    margin-left: 25px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #007bff;
+}
+
+/* =================================
+   DROPDOWN DO PERFIL
+   ================================= */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px; /* Alinhado com outros ícones */
+    color: #555;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.profile-btn:hover {
+    color: #007bff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background-color: #fff;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.dropdown-content a i {
+    margin-right: 12px;
+    width: 20px;
+    color: #888;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+.separator {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+}
+
+.show {
+    display: block;
+}
+
+/* =================================
+   ELEMENTOS ESPECÍFICOS DA PÁGINA
+   ================================= */
+
+/* Aba Lateral "AGENTE" */
+.agent-tab {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #007bff;
+    color: #fff;
+    padding: 15px 8px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: 0 10px 10px 0;
+    font-weight: 600;
+    letter-spacing: 3px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: background-color 0.3s;
+}
+.agent-tab:hover {
+    background-color: #0056b3;
+}
+
+/* Seção de Busca (Hero) */
+.search-hero {
+    background: linear-gradient(rgba(25, 61, 90, 0.6), rgba(25, 61, 90, 0.6)), url('https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
+    text-align: center;
+    padding: 5rem 1rem;
+    color: #fff;
+}
+
+.search-hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-hero p {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.search-bar {
+    display: flex;
+    max-width: 700px;
+    margin: 1.5rem auto 0;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar button {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0 2rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Seção de Listagem de Profissionais */
+.listings-section {
+    padding: 4rem 20px;
+    background-color: transparent; /* Fundo já é o do body */
+    box-shadow: none;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: #1c3d5a;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(28, 61, 90, 0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.4rem;
+    color: #1c3d5a;
+}
+
+.specialty {
+    font-size: 1rem;
+    color: #007bff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card-meta-info {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.location {
+    color: #555;
+}
+
+.price {
+    color: #28a745; /* Verde para preço */
+    font-weight: 600;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto; /* Empurra os botões para o final */
+}
+
+.card-buttons button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.btn-details {
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.btn-details:hover {
+    background-color: #e7f3ff;
+}
+
+.btn-action {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.btn-action:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+/* =================================
+   FOOTER UNIFICADO
+   ================================= */
+.footer {
+    background-color: #1c3d5a;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.security-info, .help-info {
+    flex: 1 1 45%;
+    min-width: 280px;
+}
+
+.footer h4 {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #bbb;
+}
+
+.footer a {
+    color: #6cace4;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.security-logos {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.security-logos img {
+    height: 30px;
+    width: auto;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* =================================
+   AJUSTES RESPONSIVOS
+   ================================= */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    main {
+        padding-left: 0; /* Remove o padding em telas menores */
+    }
+
+    .agent-tab {
+        display: none; /* Esconde a aba em telas menores */
+    }
+
+    .search-hero h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .nav ul li {
+        margin: 5px 12px;
+    }
+    .search-bar {
+        flex-direction: column;
+        border-radius: 20px;
+    }
+    .search-bar input, .search-bar button {
+        border-radius: 0;
+    }
+    .search-bar input {
+        border-radius: 20px 20px 0 0;
+    }
+     .search-bar button {
+        border-radius: 0 0 20px 20px;
+        padding: 0.8rem;
+    }
+}

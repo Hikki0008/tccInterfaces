@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgeCare - Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assents/css/Chat.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-content">
+        <div class="logo-container">
+            <i class="fas fa-heartbeat logo-icon"></i>
+            <h1 class="logo-text">AgeCare</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="painel.html" title="Início"><i class="fas fa-home"></i></a></li>
+                <li><a href="agendamento.html" title="Agendamentos"><i class="fas fa-calendar-alt"></i></a></li>
+                <li><a href="#" title="Favoritos"><i class="fas fa-heart"></i></a></li>
+                <li><a href="chat.html" title="Mensagens"><i class="fas fa-comments"></i></a></li>
+                <li><a href="#" title="Notificações"><i class="fas fa-bell"></i></a></li>
+                <li><a href="#" title="Minha Conta"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="chat-container">
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <h3>Conversas</h3>
+                <div class="sidebar-search">
+                    <input type="text" placeholder="Buscar contatos...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <ul class="contact-list">
+                <li class="contact active">
+                    <img src="https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de Juliana Martins">
+                    <div class="contact-info">
+                        <span class="contact-name">Juliana Martins</span>
+                        <p class="last-message">Ok, combinado! Te espero às 14h.</p>
+                    </div>
+                    <span class="timestamp">10:32</span>
+                </li>
+                <li class="contact">
+                    <img src="https://images.pexels.com/photos/8942250/pexels-photo-8942250.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de Ricardo Almeida">
+                    <div class="contact-info">
+                        <span class="contact-name">Ricardo Almeida</span>
+                        <p class="last-message">Você: Podemos confirmar o agendamento?</p>
+                    </div>
+                    <span class="timestamp">Ontem</span>
+                </li>
+                <li class="contact">
+                    <img src="https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de Fernanda Costa">
+                    <div class="contact-info">
+                        <span class="contact-name">Fernanda Costa</span>
+                        <p class="last-message">Obrigada pelo excelente atendimento!</p>
+                    </div>
+                    <span class="timestamp">26/06</span>
+                </li>
+            </ul>
+        </aside>
+
+        <section class="chat-main">
+            <div class="chat-header">
+                <img src="https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de Juliana Martins">
+                <div class="header-info">
+                    <h4>Juliana Martins</h4>
+                    <span>Online</span>
+                </div>
+                <div class="header-actions">
+                    <i class="fas fa-phone-alt"></i>
+                    <i class="fas fa-video"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div>
+
+            <div class="chat-messages">
+                <div class="message received">
+                    <p>Olá! Vi que você solicitou um agendamento. Podemos confirmar os detalhes?</p>
+                    <span class="message-time">10:30</span>
+                </div>
+                <div class="message sent">
+                    <p>Olá, Juliana! Sim, claro. Preciso do atendimento para o dia 30, às 14h.</p>
+                    <span class="message-time">10:31</span>
+                </div>
+                <div class="message received">
+                    <p>Ok, combinado! Te espero às 14h.</p>
+                    <span class="message-time">10:32</span>
+                </div>
+            </div>
+            
+            <form class="chat-input-form">
+                <i class="fas fa-paperclip"></i>
+                <textarea placeholder="Digite sua mensagem..." rows="1"></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="security-info">
+            <h4>Compre com total segurança</h4>
+            <p>Os dados pessoais são criptografados e protegidos.</p>
+        </div>
+        <div class="help-info">
+            <h4>Precisando de ajuda?</h4>
+            <p>Acesse nossa Central de Ajuda ou entre em contato.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

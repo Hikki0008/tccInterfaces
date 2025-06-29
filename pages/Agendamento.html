@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento de Cuidadores e Enfermeiros</title>
+    <title>AgeCare - Agendamento de Cuidadores e Enfermeiros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assents/css/Agendamento.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="header">
     <div class="container header-content">
-        <h1 class="logo">Serviços de Cuidado</h1>
+        <div class="logo-container">
+            <i class="fas fa-heartbeat logo-icon"></i>
+            <h1 class="logo-text">AgeCare</h1>
+        </div>
+        
         <nav class="nav">
             <ul>
-                <li><a href="#">Minha Conta</a></li>
-                <li><a href="#">Ajuda</a></li>
+                <li><a href="#" title="Início"><i class="fas fa-home"></i></a></li>
+                <li><a href="#" title="Agendamentos"><i class="fas fa-calendar-alt"></i></a></li>
+                <li><a href="#" title="Favoritos"><i class="fas fa-heart"></i></a></li>
+                <li><a href="#" title="Mensagens"><i class="fas fa-comments"></i></a></li>
+                <li><a href="#" title="Notificações"><i class="fas fa-bell"></i></a></li>
+                <li><a href="#" title="Minha Conta"><i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
     </div>
@@ -24,7 +33,7 @@
     <div class="container">
         <div class="service-details-card">
             <div class="service-image">
-                <img src="https://via.placeholder.com/300x200?text=Serviços+de+Cuidado" alt="Serviços de Cuidado Domiciliar">
+                <img src="https://via.placeholder.com/300x200?text=Serviços+AgeCare" alt="Serviços de Cuidado Domiciliar AgeCare">
             </div>
             <div class="service-info">
                 <h2>Agendamento de Serviços de Cuidado Domiciliar</h2>
@@ -52,56 +61,81 @@
                 <button class="arrow">&lt;</button>
                 <div class="date-items">
                     <div class="date-item selected">
-                        <span class="day-of-week">Qui</span>
-                        <span class="day-of-month">27 Jun</span>
-                        <span class="time">09:30</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Sex</span>
-                        <span class="day-of-month">28 Jun</span>
-                        <span class="time">09:30</span>
-                    </div>
-                    <div class="date-item">
                         <span class="day-of-week">Sáb</span>
+                        <span class="day-of-month">28 Jun</span>
+                    </div>
+                    <div class="date-item">
+                        <span class="day-of-week">Dom</span>
                         <span class="day-of-month">29 Jun</span>
-                        <span class="time">09:30</span>
                     </div>
                     <div class="date-item">
                         <span class="day-of-week">Seg</span>
-                        <span class="day-of-month">01 Jul</span>
-                        <span class="time">09:30</span>
+                        <span class="day-of-month">30 Jun</span>
                     </div>
                     <div class="date-item">
                         <span class="day-of-week">Ter</span>
-                        <span class="day-of-month">02 Jul</span>
-                        <span class="time">09:30</span>
+                        <span class="day-of-month">01 Jul</span>
                     </div>
                     <div class="date-item">
                         <span class="day-of-week">Qua</span>
-                        <span class="day-of-month">03 Jul</span>
-                        <span class="time">09:30</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Qui</span>
-                        <span class="day-of-month">04 Jul</span>
-                        <span class="time">09:30</span>
+                        <span class="day-of-month">02 Jul</span>
                     </div>
                 </div>
                 <button class="arrow">&gt;</button>
             </div>
 
+            <h3>Selecione um horário</h3>
+            <div class="time-picker">
+                <button class="arrow">&lt;</button>
+                <div class="time-items">
+                    <div class="time-item selected">
+                        <span class="time">09:30</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="time">10:30</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="time">11:30</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="time">13:30</span>
+                    </div>
+                </div>
+                <button class="arrow">&gt;</button>
+            </div>
+        </section>
+
+        <section class="service-selection-section">
             <h3>Selecione um tipo de serviço</h3>
-            <div class="service-types">
+            <div class="service-selection-container">
                 <div class="service-type-card">
                     <h4>CUIDADOR</h4>
-                    <p class="price">Preço entre R$ 80,00 e R$ 150,00</p>
-                    <p class="details">Atendimento por hora</p>
+                    <p class="price">A partir de R$ 80,00 / hora</p>
+                    <div class="details">
+                        <p>Ideal para suporte e companhia nas atividades diárias. Nossos cuidadores são focados no bem-estar e na segurança do paciente.</p>
+                        <ul class="service-duties">
+                            <li>✓ Auxílio com higiene e vestuário</li>
+                            <li>✓ Companhia e atividades de lazer</li>
+                            <li>✓ Administração de medicamentos via oral</li>
+                            <li>✓ Preparo de refeições leves</li>
+                            <li>✓ Acompanhamento em consultas</li>
+                        </ul>
+                    </div>
                     <button class="add-to-cart">Adicionar</button>
                 </div>
                 <div class="service-type-card">
                     <h4>ENFERMEIRO(A)</h4>
-                    <p class="price">Preço entre R$ 150,00 e R$ 300,00</p>
-                    <p class="details">Atendimento por hora ou turno</p>
+                    <p class="price">A partir de R$ 150,00 / hora</p>
+                    <div class="details">
+                        <p>Para cuidados que exigem conhecimento técnico e procedimentos clínicos. Profissionais qualificados para cuidados complexos.</p>
+                        <ul class="service-duties">
+                            <li>✓ Aplicação de medicamentos (injetáveis, etc.)</li>
+                            <li>✓ Realização de curativos complexos</li>
+                            <li>✓ Monitoramento avançado de sinais vitais</li>
+                            <li>✓ Cuidados pós-operatórios</li>
+                            <li>✓ Manejo de sondas e cateteres</li>
+                        </ul>
+                    </div>
                     <button class="add-to-cart">Adicionar</button>
                 </div>
             </div>
@@ -142,6 +176,5 @@
         </div>
     </div>
 </footer>
-<></>
 </body>
 </html>

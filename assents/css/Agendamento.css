@@ -3,7 +3,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
+    background-color: #f0f5fa; /* Light Blue-Gray Background */
     color: #333;
 }
 
@@ -15,7 +15,7 @@ body {
 
 /* Header */
 .header {
-    background-color: #fff;
+    background-color: #ffffff; /* White Header */
     border-bottom: 1px solid #ddd;
     padding: 15px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -27,34 +27,49 @@ body {
     align-items: center;
 }
 
-.logo {
+/* Logo e Nome Styles */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #208ee7; /* Cor do ícone do logo */
+}
+
+.logo-text {
     font-size: 24px;
     font-weight: 700;
-    color: #333;
+    color: #1c3d5a; /* Dark Blue */
     margin: 0;
 }
 
+/* Navegação com Ícones Styles */
 .nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
 }
 
 .nav ul li {
-    margin-left: 20px;
+    margin-left: 25px; /* Espaço entre os ícones */
 }
 
 .nav ul li a {
     text-decoration: none;
-    color: #555;
-    font-weight: 500;
+    color: #555; /* Cor padrão do ícone */
+    font-size: 22px; /* Tamanho dos ícones */
     transition: color 0.3s ease;
 }
 
 .nav ul li a:hover {
-    color: #007bff; /* Sympla's blue-ish color */
+    color: #208ee7; /* Primary Blue */
 }
+
 
 /* Main Content */
 .main-content {
@@ -72,8 +87,8 @@ body {
 }
 
 .service-image {
-    flex: 0 0 300px; /* Fixed width for the image */
-    background-color: #e9ecef; /* Placeholder background */
+    flex: 0 0 300px;
+    background-color: #e9ecef;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,7 +111,7 @@ body {
 .service-info h2 {
     margin-top: 0;
     font-size: 28px;
-    color: #333;
+    color: #1c3d5a; /* Dark Blue */
 }
 
 .service-meta {
@@ -107,11 +122,11 @@ body {
 
 .share-button {
     text-align: right;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px;
 }
 
 .share-button button {
-    background-color: #007bff; /* Sympla's blue-ish color */
+    background-color: #208ee7; /* Primary Blue */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -125,7 +140,7 @@ body {
 }
 
 .share-button button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker Blue */
 }
 
 /* Section Styling */
@@ -139,7 +154,7 @@ section {
 
 section h3 {
     font-size: 22px;
-    color: #333;
+    color: #1c3d5a; /* Dark Blue */
     margin-bottom: 20px;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
@@ -153,7 +168,7 @@ section h3 {
 }
 
 .description-section .read-more {
-    color: #007bff;
+    color: #208ee7; /* Primary Blue */
     text-decoration: none;
     font-weight: 500;
 }
@@ -162,8 +177,8 @@ section h3 {
     text-decoration: underline;
 }
 
-/* Scheduling Section - Date Picker */
-.date-picker {
+/* Scheduling Section - Date and Time Pickers */
+.date-picker, .time-picker {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,7 +188,7 @@ section h3 {
     padding: 15px;
 }
 
-.date-picker .arrow {
+.date-picker .arrow, .time-picker .arrow {
     background: none;
     border: 1px solid #ccc;
     color: #555;
@@ -185,12 +200,12 @@ section h3 {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.date-picker .arrow:hover {
+.date-picker .arrow:hover, .time-picker .arrow:hover {
     background-color: #eee;
     border-color: #bbb;
 }
 
-.date-items {
+.date-items, .time-items {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -199,8 +214,8 @@ section h3 {
     padding-bottom: 10px; /* For scrollbar */
 }
 
-.date-item {
-    flex: 0 0 auto; /* Prevent stretching */
+.date-item, .time-item {
+    flex: 0 0 auto;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -208,19 +223,19 @@ section h3 {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 100px; /* Ensure a minimum width */
+    min-width: 100px;
     scroll-snap-align: start;
 }
 
-.date-item.selected {
-    border-color: #007bff;
+.date-item.selected, .time-item.selected {
+    border-color: #208ee7; /* Primary Blue */
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
-    background-color: #e7f3ff;
+    background-color: #e7f3ff; /* Light Blue */
 }
 
-.date-item:hover:not(.selected) {
-    border-color: #a3d4ff;
-    background-color: #f0f8ff;
+.date-item:hover:not(.selected), .time-item:hover:not(.selected) {
+    border-color: #a3d4ff; /* Lighter Blue */
+    background-color: #f0f8ff; /* Very Light Blue */
 }
 
 .date-item .day-of-week {
@@ -237,39 +252,38 @@ section h3 {
     display: block;
 }
 
-.date-item .time {
-    font-size: 14px;
-    color: #666;
+.time-item .time {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
     display: block;
-    margin-top: 5px;
 }
 
-/* Service Types */
-.service-types {
+/* Service Types / Selection Section */
+.service-selection-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
     margin-bottom: 30px;
 }
 
 .service-type-card {
     background-color: #fdfdfd;
-    border: 1px solid #eee;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 20px;
-    flex: 1 1 calc(50% - 20px); /* Two cards per row, adjust for gap */
-    max-width: calc(50% - 20px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex: 1 1 320px;
+    max-width: 420px;
 }
 
 .service-type-card h4 {
     font-size: 18px;
-    color: #007bff;
+    color: #208ee7;
     margin-top: 0;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -279,18 +293,33 @@ section h3 {
     font-size: 16px;
     font-weight: 500;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 .service-type-card .details {
     font-size: 14px;
-    color: #777;
-    margin-bottom: 15px;
-    flex-grow: 1; /* Pushes button to bottom */
+    color: #555;
+    flex-grow: 1;
+}
+
+.service-type-card .details p {
+    margin-top: 0;
+    line-height: 1.6;
+}
+
+.service-duties {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.service-duties li {
+    margin-bottom: 8px;
+    color: #333;
 }
 
 .service-type-card .add-to-cart {
-    background-color: #28a745; /* Green for add to cart */
+    background-color: #208ee7;
     color: #fff;
     border: none;
     padding: 10px 25px;
@@ -299,10 +328,12 @@ section h3 {
     font-size: 16px;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .service-type-card .add-to-cart:hover {
-    background-color: #218838;
+    background-color: #208ee7;
 }
 
 /* Total Price Section */
@@ -324,12 +355,12 @@ section h3 {
 .total-price-section .total-value {
     font-size: 24px;
     font-weight: 700;
-    color: #007bff;
+    color: #208ee7;
     margin: 0;
 }
 
 .total-price-section .buy-button {
-    background-color: #ff7f00; /* Orange-ish color, similar to Sympla's buy button */
+    background-color: #208ee7;
     color: #fff;
     border: none;
     padding: 12px 30px;
@@ -341,7 +372,7 @@ section h3 {
 }
 
 .total-price-section .buy-button:hover {
-    background-color: #e67300;
+    background-color: #208ee7;
 }
 
 /* Payment Methods Section */
@@ -353,7 +384,7 @@ section h3 {
 }
 
 .payment-methods-section .payment-icons img {
-    height: 30px; /* Adjust as needed */
+    height: 30px;
     width: auto;
     border: 1px solid #eee;
     border-radius: 4px;
@@ -362,7 +393,7 @@ section h3 {
 }
 
 .payment-methods-section .more-options {
-    color: #007bff;
+    color: #208ee7;
     text-decoration: none;
     font-weight: 500;
 }
@@ -373,7 +404,7 @@ section h3 {
 
 /* Footer */
 .footer {
-    background-color: #343a40;
+    background-color: #1c3d5a;
     color: #fff;
     padding: 30px 0;
     font-size: 14px;
@@ -387,8 +418,8 @@ section h3 {
 }
 
 .security-info, .help-info {
-    flex: 1 1 45%; /* Adjust width for two columns */
-    min-width: 280px; /* Minimum width before wrapping */
+    flex: 1 1 45%;
+    min-width: 280px;
 }
 
 .footer h4 {
@@ -407,7 +438,7 @@ section h3 {
 }
 
 .footer a {
-    color: #007bff;
+    color: #208ee7;
     text-decoration: none;
 }
 
@@ -450,24 +481,25 @@ section h3 {
         font-size: 24px;
     }
 
-    .date-items {
+    .date-items, .time-items {
         justify-content: flex-start;
         flex-wrap: nowrap;
     }
 
-    .date-item {
+    .date-item, .time-item {
         min-width: 90px;
         padding: 10px 15px;
     }
 
-    .service-types {
+    .service-selection-container {
         flex-direction: column;
         align-items: center;
     }
 
     .service-type-card {
-        max-width: 100%;
-        flex: 1 1 100%;
+        width: 100%;
+        max-width: 500px;
+        flex-basis: auto;
     }
 
     .footer-content {
@@ -482,15 +514,18 @@ section h3 {
 @media (max-width: 480px) {
     .header-content {
         flex-direction: column;
-        text-align: center;
+        gap: 15px;
+    }
+    
+    .nav ul li {
+        margin-left: 15px; /* Reduz espaço em telas muito pequenas */
+    }
+    
+    .nav ul li:first-child {
+        margin-left: 0;
     }
 
-    .nav ul {
-        margin-top: 10px;
-        justify-content: center;
-    }
-
-    .logo {
+    .logo-container {
         margin-bottom: 10px;
     }
 
