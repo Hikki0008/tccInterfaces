@@ -13,6 +13,11 @@
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+.patient-card-link {
+            text-decoration: none;
+            color: inherit; /* Herda a cor do texto do elemento pai */
+        }
+        
 * {
     margin: 0;
     padding: 0;

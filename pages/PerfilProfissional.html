@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - AgeCare</title>
-    <link rel="stylesheet" href="../assents/css/PerfilProfissional.css">
+    <link rel="stylesheet" href="../assents/css/PerfilProfissional.css"> 
+    
 </head>
 <body>
 
@@ -33,7 +34,7 @@
             
             <section class="content-section" id="agendamentos">
                 <h2>Meus Agendamentos</h2>
-                <ul class="appointments-list">
+                <ul class="appointments-list" style="list-style: none; padding: 0;">
                     <li class="appointment-item">
                         <div class="appointment-details">
                             <p><strong>Paciente:</strong> Carlos Pereira</p>
@@ -64,32 +65,44 @@
             <section class="content-section" id="pacientes">
                 <h2>Meus Clientes e Pacientes</h2>
                 <div class="patients-grid">
-                    <div class="patient-card">
-                        <img src="https://i.ibb.co/3k5fTyt/patient1.jpg" alt="Foto do Paciente Carlos Pereira">
-                        <h3>Carlos Pereira</h3>
-                        <p class="condition">Alzheimer</p>
-                    </div>
-                    <div class="patient-card">
-                        <img src="https://i.ibb.co/SJVyJ86/patient2.jpg" alt="Foto da Paciente Maria Souza">
-                        <h3>Maria Souza</h3>
-                        <p class="condition">Pós-operatório</p>
-                    </div>
-                    <div class="patient-card">
-                        <img src="https://i.ibb.co/tZ5wK1y/patient3.jpg" alt="Foto do Paciente João Costa">
-                        <h3>João Costa</h3>
-                        <p class="condition">Mobilidade Reduzida</p>
-                    </div>
-                     <div class="patient-card">
-                        <img src="https://i.ibb.co/yqg6gD2/patient4.jpg" alt="Foto da Paciente Helena Martins">
-                        <h3>Helena Martins</h3>
-                        <p class="condition">Diabetes Tipo 2</p>
-                    </div>
+
+                    <a href="perfil_paciente.html" class="patient-card-link">
+                        <div class="patient-card">
+                            <img src="https://i.ibb.co/3k5fTyt/patient1.jpg" alt="Foto do Paciente Carlos Pereira">
+                            <h3>Carlos Pereira</h3>
+                            <p class="condition">Alzheimer</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="patient-card-link">
+                        <div class="patient-card">
+                            <img src="https://i.ibb.co/SJVyJ86/patient2.jpg" alt="Foto da Paciente Maria Souza">
+                            <h3>Maria Souza</h3>
+                            <p class="condition">Pós-operatório</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="patient-card-link">
+                        <div class="patient-card">
+                            <img src="https://i.ibb.co/tZ5wK1y/patient3.jpg" alt="Foto do Paciente João Costa">
+                            <h3>João Costa</h3>
+                            <p class="condition">Mobilidade Reduzida</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="patient-card-link">
+                       <div class="patient-card">
+                            <img src="https://i.ibb.co/yqg6gD2/patient4.jpg" alt="Foto da Paciente Helena Martins">
+                            <h3>Helena Martins</h3>
+                            <p class="condition">Diabetes Tipo 2</p>
+                        </div>
+                    </a>
+
                 </div>
             </section>
-
             <section class="content-section" id="servicos">
                 <h2>Meus Serviços</h2>
-                <ul class="services-list">
+                <ul class="services-list" style="list-style: none; padding: 0;">
                     <li class="service-item">
                         <div class="service-header">
                             <h3>Cuidados de Higiene e Conforto</h3>
