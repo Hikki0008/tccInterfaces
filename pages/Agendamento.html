@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgeCare - Agendamento de Cuidadores e Enfermeiros</title>
+    <title>AgeCare - Agendamento</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../assents/css/Agendamento.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assents/css/Agendamento.css">
+    <style>
+        /* Estilo básico para a classe 'selected' que o JavaScript adiciona */
+        .date-item.selected, .time-item.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .service-type-card.selected {
+            border: 2px solid #007bff;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
 <header class="header">
@@ -15,7 +27,6 @@
             <i class="fas fa-heartbeat logo-icon"></i>
             <h1 class="logo-text">AgeCare</h1>
         </div>
-        
         <nav class="nav">
             <ul>
                 <li><a href="#" title="Início"><i class="fas fa-home"></i></a></li>
@@ -31,17 +42,18 @@
 
 <main class="main-content">
     <div class="container">
-        <div class="service-details-card">
+        
+        <div class="service-details-card" id="professional-card">
             <div class="service-image">
-                <img src="https://via.placeholder.com/300x200?text=Serviços+AgeCare" alt="Serviços de Cuidado Domiciliar AgeCare">
+                <img id="professional-image" src="https://via.placeholder.com/300x200?text=Carregando..." alt="Foto do Profissional">
             </div>
             <div class="service-info">
-                <h2>Agendamento de Serviços de Cuidado Domiciliar</h2>
+                <h2 id="professional-name">Carregando...</h2>
                 <p class="service-meta">
-                    <span>🗓️ Disponível de Segunda a Sábado</span> <br>
-                    <span>🕒 Horário: 08:00 - 18:00</span> <br>
-                    <span>📍 Atendimento em Domicílio</span> <br>
-                    <span>📞 Contato: (XX) XXXX-XXXX</span>
+                    <span id="professional-specialty"><i class="fas fa-user-md"></i> Carregando...</span> <br>
+                    <span id="professional-location"><i class="fas fa-map-marker-alt"></i> Carregando...</span> <br>
+                    <span id="professional-registry"><i class="fas fa-id-card"></i> Carregando...</span> <br>
+                    <span id="professional-rating"><i class="fas fa-star"></i> Carregando...</span>
                 </p>
                 <div class="share-button">
                     <button><img src="https://via.placeholder.com/20x20?text=🔗" alt="Compartilhar"> Compartilhar</button>
@@ -51,101 +63,63 @@
 
         <section class="description-section">
             <h3>Descrição do Serviço</h3>
-            <p>Oferecemos serviços de cuidado domiciliar especializados e humanizados, com foco no bem-estar e na recuperação dos nossos pacientes. Nossa equipe é composta por profissionais qualificados e experientes, incluindo cuidadores e enfermeiros, prontos para atender às suas necessidades com carinho e dedicação. Disponibilizamos desde acompanhamento pontual até cuidados de longa duração, garantindo tranquilidade para você e sua família.</p>
+            <p>Selecione abaixo a data, horário e tipo de serviço desejado para agendar com o profissional. Nossa equipe é composta por profissionais qualificados e experientes, prontos para atender às suas necessidades com carinho e dedicação.</p>
             <a href="#" class="read-more">Ler mais</a>
         </section>
 
-        <section class="scheduling-section">
-            <h3>Selecione uma data</h3>
-            <div class="date-picker">
-                <button class="arrow">&lt;</button>
-                <div class="date-items">
-                    <div class="date-item selected">
-                        <span class="day-of-week">Sáb</span>
-                        <span class="day-of-month">28 Jun</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Dom</span>
-                        <span class="day-of-month">29 Jun</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Seg</span>
-                        <span class="day-of-month">30 Jun</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Ter</span>
-                        <span class="day-of-month">01 Jul</span>
-                    </div>
-                    <div class="date-item">
-                        <span class="day-of-week">Qua</span>
-                        <span class="day-of-month">02 Jul</span>
-                    </div>
+        <form id="agendamento-form">
+            <section class="scheduling-section">
+                <h3>Selecione uma data</h3>
+                <div class="date-picker">
+                    <button type="button" class="arrow" id="prev-date">&lt;</button>
+                    <div class="date-items" id="date-items-container"></div>
+                    <button type="button" class="arrow" id="next-date">&gt;</button>
                 </div>
-                <button class="arrow">&gt;</button>
-            </div>
 
-            <h3>Selecione um horário</h3>
-            <div class="time-picker">
-                <button class="arrow">&lt;</button>
-                <div class="time-items">
-                    <div class="time-item selected">
-                        <span class="time">09:30</span>
-                    </div>
-                    <div class="time-item">
-                        <span class="time">10:30</span>
-                    </div>
-                    <div class="time-item">
-                        <span class="time">11:30</span>
-                    </div>
-                    <div class="time-item">
-                        <span class="time">13:30</span>
-                    </div>
+                <h3>Selecione um horário</h3>
+                <div class="time-picker">
+                     <button type="button" class="arrow" id="prev-time">&lt;</button>
+                    <div class="time-items" id="time-items-container"></div>
+                    <button type="button" class="arrow" id="next-time">&gt;</button>
                 </div>
-                <button class="arrow">&gt;</button>
-            </div>
-        </section>
+            </section>
 
-        <section class="service-selection-section">
-            <h3>Selecione um tipo de serviço</h3>
-            <div class="service-selection-container">
-                <div class="service-type-card">
-                    <h4>CUIDADOR</h4>
-                    <p class="price">A partir de R$ 80,00 / hora</p>
-                    <div class="details">
-                        <p>Ideal para suporte e companhia nas atividades diárias. Nossos cuidadores são focados no bem-estar e na segurança do paciente.</p>
-                        <ul class="service-duties">
-                            <li>✓ Auxílio com higiene e vestuário</li>
-                            <li>✓ Companhia e atividades de lazer</li>
-                            <li>✓ Administração de medicamentos via oral</li>
-                            <li>✓ Preparo de refeições leves</li>
-                            <li>✓ Acompanhamento em consultas</li>
-                        </ul>
+            <section class="service-selection-section">
+                <h3>Selecione um tipo de serviço</h3>
+                <div class="service-selection-container">
+                    <div class="service-type-card" data-service="CUIDADOR" data-price="80">
+                        <h4>CUIDADOR</h4>
+                        <p class="price">A partir de R$ 80,00 / hora</p>
+                        <div class="details">
+                            <p>Ideal para suporte e companhia nas atividades diárias.</p>
+                            <ul class="service-duties">
+                                <li>✓ Auxílio com higiene e vestuário</li>
+                                <li>✓ Companhia e atividades de lazer</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="add-to-cart">Adicionar</button>
                     </div>
-                    <button class="add-to-cart">Adicionar</button>
-                </div>
-                <div class="service-type-card">
-                    <h4>ENFERMEIRO(A)</h4>
-                    <p class="price">A partir de R$ 150,00 / hora</p>
-                    <div class="details">
-                        <p>Para cuidados que exigem conhecimento técnico e procedimentos clínicos. Profissionais qualificados para cuidados complexos.</p>
-                        <ul class="service-duties">
-                            <li>✓ Aplicação de medicamentos (injetáveis, etc.)</li>
-                            <li>✓ Realização de curativos complexos</li>
-                            <li>✓ Monitoramento avançado de sinais vitais</li>
-                            <li>✓ Cuidados pós-operatórios</li>
-                            <li>✓ Manejo de sondas e cateteres</li>
-                        </ul>
+                    <div class="service-type-card" data-service="ENFERMEIRO" data-price="150">
+                        <h4>ENFERMEIRO(A)</h4>
+                        <p class="price">A partir de R$ 150,00 / hora</p>
+                        <div class="details">
+                            <p>Para cuidados que exigem conhecimento técnico.</p>
+                            <ul class="service-duties">
+                                <li>✓ Aplicação de medicamentos (injetáveis, etc.)</li>
+                                <li>✓ Realização de curativos complexos</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="add-to-cart">Adicionar</button>
                     </div>
-                    <button class="add-to-cart">Adicionar</button>
                 </div>
-            </div>
 
-            <div class="total-price-section">
-                <p class="total-label">Subtotal:</p>
-                <p class="total-value">R$ 0,00</p>
-                <button class="buy-button">Continuar</button>
-            </div>
-        </section>
+                <div class="total-price-section">
+                    <p class="total-label">Subtotal:</p>
+                    <p class="total-value" id="subtotal-value">R$ 0,00</p>
+                    <button type="submit" class="buy-button" id="btn-continuar">Continuar</button>
+                </div>
+            </section>
+        </form>
 
         <section class="payment-methods-section">
             <h3>Métodos de pagamento</h3>
@@ -164,10 +138,6 @@
         <div class="security-info">
             <h4>Compre com total segurança</h4>
             <p>Os dados pessoais são criptografados e protegidos.</p>
-            <div class="security-logos">
-                <img src="https://via.placeholder.com/80x30?text=Google+Segurança" alt="Google Segurança">
-                <img src="https://via.placeholder.com/80x30?text=PCI+DSS" alt="PCI DSS">
-            </div>
         </div>
         <div class="help-info">
             <h4>Precisando de ajuda?</h4>
@@ -176,5 +146,222 @@
         </div>
     </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- MOCK DE DADOS (SIMULAÇÃO DO BACKEND) ---
+    // Em uma aplicação real, estes dados viriam do seu backend.
+    const mockProfissionais = {
+        '1': {
+            id: 1,
+            nome: 'Ana Costa',
+            especialidade: 'Cuidadora de Idosos',
+            localizacao: 'Belo Horizonte, MG',
+            registro: 'Certificado de Cuidadora Profissional',
+            avaliacao: '4.9 (87 Avaliações)',
+            imagemUrl: 'https://images.pexels.com/photos/4270088/pexels-photo-4270088.jpeg?auto=compress&cs=tinysrgb&w=600'
+        },
+        '2': {
+            id: 2,
+            nome: 'Carlos Andrade',
+            especialidade: 'Enfermeiro Domiciliar',
+            localizacao: 'Contagem, MG',
+            registro: 'COREN-MG 123.456',
+            avaliacao: '5.0 (112 Avaliações)',
+            imagemUrl: 'https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=600'
+        }
+    };
+    
+    // Função que simula a busca no banco de dados
+    async function getProfessionalById(id) {
+        // Em um projeto real:
+        // const response = await fetch(`/api/profissionais/${id}`);
+        // return await response.json();
+        
+        // Simulação para este exemplo:
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (mockProfissionais[id]) {
+                    resolve(mockProfissionais[id]);
+                } else {
+                    reject('Profissional não encontrado');
+                }
+            }, 500); // Simula a demora da rede
+        });
+    }
+
+    // --- SELEÇÃO DOS ELEMENTOS DO DOM ---
+    const agendamentoForm = document.getElementById('agendamento-form');
+    const dateContainer = document.getElementById('date-items-container');
+    const timeContainer = document.getElementById('time-items-container');
+    const serviceCards = document.querySelectorAll('.service-type-card');
+    const subtotalValueElement = document.getElementById('subtotal-value');
+    
+    // Seletores para o novo card do profissional
+    const professionalImage = document.getElementById('professional-image');
+    const professionalName = document.getElementById('professional-name');
+    const professionalSpecialty = document.getElementById('professional-specialty');
+    const professionalLocation = document.getElementById('professional-location');
+    const professionalRegistry = document.getElementById('professional-registry');
+    const professionalRating = document.getElementById('professional-rating');
+
+    // --- ESTADO DO AGENDAMENTO ---
+    let agendamentoState = {
+        data: null,
+        horario: null,
+        tipoServico: null,
+        valor: 0.0,
+        idProfissional: null
+    };
+
+    // --- FUNÇÕES AUXILIARES ---
+
+    // Preenche o card do profissional com os dados buscados
+    function populateProfessionalCard(professional) {
+        professionalImage.src = professional.imagemUrl;
+        professionalName.textContent = professional.nome;
+        professionalSpecialty.innerHTML = `<i class="fas fa-user-md"></i> ${professional.especialidade}`;
+        professionalLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${professional.localizacao}`;
+        professionalRegistry.innerHTML = `<i class="fas fa-id-card"></i> ${professional.registro}`;
+        professionalRating.innerHTML = `<i class="fas fa-star"></i> ${professional.avaliacao}`;
+    }
+
+    // Gera dinamicamente os próximos 7 dias úteis
+    function populateDates() {
+        dateContainer.innerHTML = '';
+        const today = new Date();
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+
+            if (date.getDay() === 0) continue; // Pula Domingos
+
+            const dayOfWeek = date.toLocaleDateString('pt-BR', { weekday: 'short' }).slice(0,3);
+            const dayOfMonth = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+            const dateValue = date.toISOString().split('T')[0];
+
+            const dateItem = document.createElement('div');
+            dateItem.classList.add('date-item');
+            dateItem.setAttribute('data-date', dateValue);
+            dateItem.innerHTML = `<span class="day-of-week">${dayOfWeek}</span><span class="day-of-month">${dayOfMonth.replace('.', '')}</span>`;
+            dateContainer.appendChild(dateItem);
+        }
+    }
+
+    // Gera os horários disponíveis
+    function populateTimes() {
+        timeContainer.innerHTML = '';
+        const horarios = ['09:30', '10:30', '11:30', '13:30', '14:30', '15:30', '16:30', '17:30'];
+        horarios.forEach(horario => {
+            const timeItem = document.createElement('div');
+            timeItem.classList.add('time-item');
+            timeItem.innerHTML = `<span class="time">${horario}</span>`;
+            timeContainer.appendChild(timeItem);
+        });
+    }
+    
+    // Atualiza o valor do subtotal na tela
+    function updateSubtotal() {
+        subtotalValueElement.textContent = agendamentoState.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // --- EVENT LISTENERS (AÇÕES DO USUÁRIO) ---
+
+    dateContainer.addEventListener('click', (event) => {
+        const target = event.target.closest('.date-item');
+        if (!target) return;
+        dateContainer.querySelector('.selected')?.classList.remove('selected');
+        target.classList.add('selected');
+        agendamentoState.data = target.getAttribute('data-date');
+    });
+
+    timeContainer.addEventListener('click', (event) => {
+        const target = event.target.closest('.time-item');
+        if (!target) return;
+        timeContainer.querySelector('.selected')?.classList.remove('selected');
+        target.classList.add('selected');
+        agendamentoState.horario = target.querySelector('.time').textContent;
+    });
+
+    serviceCards.forEach(card => {
+        card.querySelector('.add-to-cart').addEventListener('click', () => {
+            serviceCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            agendamentoState.tipoServico = card.getAttribute('data-service');
+            agendamentoState.valor = parseFloat(card.getAttribute('data-price'));
+            updateSubtotal();
+        });
+    });
+
+    // Evento de submissão do formulário
+    agendamentoForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Impede recarregamento da página
+
+        if (!agendamentoState.data || !agendamentoState.horario || !agendamentoState.tipoServico) {
+            alert('Por favor, selecione data, horário e um tipo de serviço.');
+            return;
+        }
+        if (!agendamentoState.idProfissional) {
+            alert('Erro: ID do profissional não encontrado. Volte e selecione um profissional novamente.');
+            return;
+        }
+
+        // Objeto a ser enviado para o backend
+        const agendamentoParaSalvar = {
+            dataAgendamento: agendamentoState.data,
+            horarioAgendamento: agendamentoState.horario,
+            tipoServico: agendamentoState.tipoServico,
+            valor: agendamentoState.valor,
+            status: 'PENDENTE',
+            idProfissional: agendamentoState.idProfissional
+            // idCliente: 1, // Você precisará obter o ID do cliente logado
+        };
+        
+        console.log('Enviando para o backend:', JSON.stringify(agendamentoParaSalvar));
+
+        // Requisição FETCH para o backend
+        try {
+            const response = await fetch('/api/agendamento', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(agendamentoParaSalvar),
+            });
+            if (!response.ok) throw new Error('Falha na requisição: ' + response.statusText);
+            
+            const data = await response.json();
+            alert(`Agendamento #${data.id} realizado com sucesso para ${professionalName.textContent}!`);
+            location.reload(); // Recarrega a página para limpar
+        } catch (error) {
+            console.error('Erro ao salvar agendamento:', error);
+            // Alerta para quando o backend não está rodando
+            alert('Não foi possível realizar o agendamento. Verifique se o servidor backend está ativo e tente novamente.');
+        }
+    });
+
+    // --- INICIALIZAÇÃO DA PÁGINA ---
+    async function initializePage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const professionalId = urlParams.get('id');
+
+        if (!professionalId) {
+            document.querySelector('.main-content').innerHTML = '<h1>Erro: Nenhum profissional selecionado.</h1><p>Por favor, volte à página anterior e escolha um profissional para agendar.</p>';
+            return;
+        }
+
+        try {
+            const professionalData = await getProfessionalById(professionalId);
+            populateProfessionalCard(professionalData);
+            agendamentoState.idProfissional = professionalData.id;
+            populateDates();
+            populateTimes();
+        } catch (error) {
+            document.querySelector('.main-content').innerHTML = `<h1>Erro: Profissional não encontrado.</h1><p>${error}</p>`;
+        }
+    }
+
+    initializePage();
+});
+</script>
 </body>
 </html>

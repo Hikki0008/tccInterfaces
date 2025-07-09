@@ -49,7 +49,7 @@
             <h1>Cuidado e confiança perto de você</h1>
             <p>Encontre enfermeiros e cuidadores qualificados na sua região.</p>
             <div class="search-bar">
-                <input type="text" placeholder="Busque por especialidade, nome ou cidade...">
+                <input type="text" id="searchInput" placeholder="Busque por especialidade, nome ou cidade...">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -57,94 +57,17 @@
 
     <section class="listings-section">
         <h2 class="section-title">Profissionais em Destaque</h2>
-        <div class="listings-grid">
-            <div class="card">
-                <img src="https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de uma enfermeira sorrindo">
-                <div class="card-body">
-                    <h3>Juliana Martins</h3>
-                    <p class="specialty">Enfermeira Pediátrica</p>
-                    <div class="card-meta-info">
-                        <span class="location"><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG</span>
-                        <span class="price">A partir de R$ 200/h</span>
-                    </div>
-                    <div class="card-buttons">
-                        <button class="btn-details">Ver Perfil</button>
-                        <button class="btn-action">Agendar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.pexels.com/photos/8942250/pexels-photo-8942250.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de um cuidador de idosos">
-                <div class="card-body">
-                    <h3>Ricardo Almeida</h3>
-                    <p class="specialty">Cuidador de Idosos</p>
-                    <div class="card-meta-info">
-                        <span class="location"><i class="fas fa-map-marker-alt"></i> Contagem, MG</span>
-                        <span class="price">A partir de R$ 150/h</span>
-                    </div>
-                    <div class="card-buttons">
-                        <button class="btn-details">Ver Perfil</button>
-                        <button class="btn-action">Agendar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Foto de um fisioterapeuta">
-                <div class="card-body">
-                    <h3>Fernanda Costa</h3>
-                    <p class="specialty">Técnica de Enfermagem</p>
-                    <div class="card-meta-info">
-                        <span class="location"><i class="fas fa-map-marker-alt"></i> Betim, MG</span>
-                        <span class="price">A partir de R$ 120/h</span>
-                    </div>
-                    <div class="card-buttons">
-                        <button class="btn-details">Ver Perfil</button>
-                        <button class="btn-action">Agendar</button>
-                    </div>
-                </div>
-            </div>
+        <div class="listings-grid" id="listingsGrid">
+            <!-- Os cards dos profissionais serão inseridos aqui via JavaScript -->
         </div>
     </section>
 </main>
 
 <footer class="footer">
-    <div class="container footer-content">
-        <div class="security-info">
-            <h4>Compre com total segurança</h4>
-            <p>Os dados pessoais são criptografados e protegidos.</p>
-            <div class="security-logos">
-                <img src="https://via.placeholder.com/80x30?text=Google+Segurança" alt="Google Segurança">
-                <img src="https://via.placeholder.com/80x30?text=PCI+DSS" alt="PCI DSS">
-            </div>
-        </div>
-        <div class="help-info">
-            <h4>Precisando de ajuda?</h4>
-            <p>Acesse nossa Central de Ajuda ou entre em contato.</p>
-            <a href="#">Fale conosco</a>
-        </div>
-    </div>
+    <!-- Rodapé continua o mesmo -->
 </footer>
 
-<script>
-    // Script para o dropdown do perfil
-    document.addEventListener('DOMContentLoaded', function() {
-        const profileBtn = document.getElementById('profileBtn');
-        const dropdownContent = document.getElementById('dropdownContent');
-        if (profileBtn) {
-            profileBtn.addEventListener('click', function(event) {
-                event.stopPropagation();
-                dropdownContent.classList.toggle('show');
-            });
-        }
-        window.addEventListener('click', function(event) {
-            if (dropdownContent && !event.target.closest('.profile-dropdown')) {
-                if (dropdownContent.classList.contains('show')) {
-                    dropdownContent.classList.remove('show');
-                }
-            }
-        });
-    });
-</script>
 
+<script src="/assents/js/index.js"></script>
 </body>
 </html>
