@@ -8,12 +8,10 @@ function cadastrar(event) {
     const certificado = document.getElementById('idcertificado').value.trim();
     const senha = document.getElementById('idsenha').value.trim();
 
-
-    if (!nome || !email || !cpf || !especialidade || !certificado|| !senha) {
+    if (!nome || !email || !cpf || !especialidade || !senha) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
-
 
     if (cpf.length < 11) {
         alert("CPF deve ter pelo menos 11 dígitos.");
@@ -25,11 +23,9 @@ function cadastrar(event) {
         return;
     }
 
-
     const submitBtn = document.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.textContent = "Cadastrando...";
-
 
     fetch('http://localhost:8080/api/Profissional', {
         method: 'POST',
@@ -47,24 +43,20 @@ function cadastrar(event) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
+                // Se a resposta não for OK, lança um erro para ser pego pelo .catch()
+                throw new Error(`Erro na requisição: ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
             console.log("Resposta da API:", data);
-            alert("Usuario cadastrado com sucesso!");
+            alert("Profissional cadastrado com sucesso! Você será redirecionado.");
 
-            document.getElementById('idnome').value = "";
-            document.getElementById('idemail').value = "";
-            document.getElementById('idcpf').value = "";
-            document.getElementById('idespecialidade').value = "";
-            document.getElementById('idcertificado').value = "";
-            document.getElementById('idsenha').value = "";
+            window.location.href = '../index.html';
         })
         .catch(error => {
             console.error("Erro ao enviar dados:", error);
-            alert("Erro ao cadastrar usuário. Verifique sua conexão e tente novamente.");
+            alert("Erro ao cadastrar profissional. Verifique os dados e tente novamente.");
         })
         .finally(() => {
             submitBtn.disabled = false;
