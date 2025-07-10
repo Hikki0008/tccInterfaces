@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgeCare - Suporte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assents/css/Suporte.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-content">
+        <div class="logo-container">
+            <i class="fas fa-heartbeat logo-icon"></i>
+            <h1 class="logo-text">AgeCare</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html" title="Início"><i class="fas fa-home"></i></a></li>
+                <li><a href="agendamento.html" title="Agendamentos"><i class="fas fa-calendar-alt"></i></a></li>
+                <li><a href="chat.html" title="Mensagens"><i class="fas fa-comments"></i></a></li>
+                <li><a href="#" title="Minha Conta"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="support-main">
+    <div class="container">
+        <div class="support-header">
+            <h1>Central de Ajuda</h1>
+            <p>Como podemos ajudar você hoje?</p>
+            <div class="support-search-bar">
+                <input type="text" placeholder="Digite sua dúvida aqui...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <section class="faq-section">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como faço para agendar um serviço?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Para agendar, basta ir à página de agendamento, selecionar a data e o horário desejados, escolher o tipo de profissional (cuidador ou enfermeiro) e clicar em "Continuar". Você será guiado para a página de pagamento para finalizar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quais são as formas de pagamento aceitas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceitamos cartões de crédito (Visa, Mastercard), débito e PIX. Todas as transações são seguras e criptografadas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Posso cancelar um agendamento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, você pode cancelar um agendamento com até 24 horas de antecedência para receber o reembolso integral. Cancelamentos com menos de 24 horas de antecedência podem estar sujeitos a taxas. Entre em contato conosco para mais detalhes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Ainda precisa de ajuda?</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Abrir um Chamado</h3>
+                    <p>Descreva seu problema e nossa equipe responderá o mais rápido possível.</p>
+                    <a href="#" class="btn-primary">Criar Ticket</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Fale Conosco</h3>
+                    <p>Ligue para nós durante o horário comercial para um atendimento imediato.</p>
+                    <span class="contact-detail">(XX) XXXX-XXXX</span>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Envie um E-mail</h3>
+                    <p>Prefere nos contatar por e-mail? Envie sua dúvida para nosso time de suporte.</p>
+                    <span class="contact-detail">suporte@agecare.com</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="security-info">
+            <h4>Compre com total segurança</h4>
+            <p>Os dados pessoais são criptografados e protegidos.</p>
+        </div>
+        <div class="help-info">
+            <h4>Precisando de ajuda?</h4>
+            <p>Acesse nossa Central de Ajuda ou entre em contato.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Script para o acordeão do FAQ
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+
+            faqItem.classList.toggle('active');
+
+            if (faqItem.classList.contains('active')) {
+                faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                faqAnswer.style.

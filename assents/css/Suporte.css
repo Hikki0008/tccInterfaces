@@ -1,0 +1,222 @@
+/* =================================
+   BASE E ESTILO GLOBAL AGECARE
+   ================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =================================
+   HEADER E FOOTER UNIFICADOS
+   ================================= */
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon { font-size: 28px; color: #007bff; }
+.logo-text { font-size: 24px; font-weight: 700; color: #1c3d5a; margin: 0; }
+
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+.nav ul li { margin-left: 25px; }
+.nav ul li a { text-decoration: none; color: #555; font-size: 22px; transition: color 0.3s ease; }
+.nav ul li a:hover { color: #007bff; }
+
+.footer { background-color: #1c3d5a; color: #fff; padding: 30px 0; font-size: 14px; margin-top: 4rem; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.security-info, .help-info { flex: 1 1 45%; min-width: 280px; }
+.footer h4 { font-size: 16px; color: #fff; margin: 0 0 10px 0; border-bottom: 1px solid #555; padding-bottom: 5px; }
+.footer p { margin-bottom: 10px; line-height: 1.6; color: #bbb; }
+
+/* =================================
+   ESTILOS DA PÁGINA DE SUPORTE
+   ================================= */
+.support-main {
+    padding: 2rem 0;
+}
+
+.support-header {
+    text-align: center;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 2.5rem;
+}
+
+.support-header h1 {
+    color: #1c3d5a;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.support-header p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.support-search-bar {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.support-search-bar input {
+    width: 100%;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+}
+.support-search-bar input:focus { outline: none; }
+
+.support-search-bar button {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Seção de FAQ */
+.faq-section {
+    margin-bottom: 2.5rem;
+}
+
+.faq-section h2, .contact-section h2 {
+    text-align: center;
+    color: #1c3d5a;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    padding: 0 1.5rem 1.5rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+/* Estilo do FAQ ativo */
+.faq-item.active .faq-question {
+    color: #007bff;
+}
+
+/* Seção de Contato */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    font-size: 1.4rem;
+    color: #1c3d5a;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.contact-detail {
+    font-weight: 500;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

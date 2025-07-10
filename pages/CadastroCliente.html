@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de cliente</title>
-    <link rel="stylesheet" href="../assents/css/">
+    <title>AgeCare - Cadastro de Cliente</title>
+    <link rel="stylesheet" href="../assents/css/cadastroCliente.css">
 </head>
 <body class="bg-light p-3">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card shadow mt-5">
-            <div class="card-body">
-                <h4 class="card-title text-center mb-4">Cadastro de Cliente</h4>
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow mt-5">
+                <div class="card-body">
+                    <img src="../Imagens/logo001.png" alt="Logo AgeCare" class="login-logo">
+                    <h4 class="card-title text-center mb-4">Cadastro de Cliente</h4>
 
-                <form id="" onsubmit="Cadastrar(event)">
-                    <div class="mb-3">
-                        <label class="form-label" for="idnome">Nome</label>
-                        <input type="text" class="form-control" id="nome" required>
-                    </div>
+                    <form id="formCliente" onsubmit="Cadastrar(event)">
+                        <div class="mb-3">
+                            <label class="form-label" for="nome">Nome Completo</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="idemail"></label>
-                        <input type="email" class="form-control" id="idemail" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required placeholder="seuemail@exemplo.com">
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="idsenha">Senha</label>
-                        <input type="password" class="form-control" id="idsenha" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="documento">CPF</label>
+                            <input type="text" class="form-control" id="documento" required placeholder="000.000.000-00">
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="iddocumento"-></label>
-                        <input type="email" class="form-control" id="iddocumento" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="senha">Crie uma Senha</label>
+                            <input type="password" class="form-control" id="senha" required minlength="6">
+                        </div>
 
-                    <button type="submit" class="btn btn-success w-100">Cadastrar</button>
-                </form>
+                        <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

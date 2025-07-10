@@ -1,0 +1,357 @@
+/* =================================
+   BASE E ESTILO GLOBAL AGECARE
+   ================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5fa;
+    color: #333;
+    /* Impede a rolagem do body quando o chat preenche a tela */
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =================================
+   HEADER E FOOTER UNIFICADOS
+   ================================= */
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 28px;
+    color: #007bff;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1c3d5a;
+    margin: 0;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav ul li {
+    margin-left: 25px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #007bff;
+}
+
+.footer {
+    display: none; /* O footer geralmente não é visível em uma tela de chat full-screen */
+}
+
+/* =================================
+   ESTRUTURA PRINCIPAL DO CHAT
+   ================================= */
+main {
+    padding: 20px;
+    height: calc(100vh - 85px); /* Altura do viewport menos a altura do header */
+}
+
+.chat-container {
+    display: flex;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garante que os cantos arredondados sejam aplicados aos filhos */
+}
+
+/* =================================
+   SIDEBAR DE CONTATOS
+   ================================= */
+.chat-sidebar {
+    flex: 0 0 320px; /* Largura fixa para a sidebar */
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header h3 {
+    margin: 0 0 1rem 0;
+    color: #1c3d5a;
+}
+
+.sidebar-search {
+    position: relative;
+}
+
+.sidebar-search input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f7fa;
+}
+
+.sidebar-search i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Permite rolar a lista de contatos */
+    flex-grow: 1;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contact:hover {
+    background-color: #f5f7fa;
+}
+
+.contact.active {
+    background-color: #e7f3ff;
+}
+
+.contact img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.contact-info {
+    flex-grow: 1;
+    overflow: hidden; /* Impede que o texto vaze */
+}
+
+.contact-name {
+    font-weight: 500;
+    color: #333;
+    display: block;
+}
+
+.last-message {
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se a mensagem for longa */
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #999;
+    margin-left: 10px;
+}
+
+/* =================================
+   JANELA PRINCIPAL DA CONVERSA
+   ================================= */
+.chat-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f7fa; /* Fundo sutil para a área de mensagens */
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-header img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.header-info {
+    flex-grow: 1;
+}
+
+.header-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.header-info span {
+    font-size: 0.85rem;
+    color: #28a745; /* Verde para "Online" */
+}
+
+.header-actions i {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.header-actions i:hover {
+    color: #007bff;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    max-width: 65%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+.message.received {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    align-self: flex-start;
+    border-top-left-radius: 4px;
+}
+
+.message.sent {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+    border-top-right-radius: 4px;
+}
+
+.message p {
+    margin: 0 0 5px 0;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: #999;
+    align-self: flex-end;
+}
+
+.message.sent .message-time {
+    color: #e0e0e0;
+}
+
+/* Formulário de Envio */
+.chat-input-form {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-input-form i {
+    font-size: 1.4rem;
+    color: #777;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.chat-input-form textarea {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    resize: none; /* Impede o usuário de redimensionar */
+    background-color: #f5f7fa;
+    border-radius: 10px;
+    max-height: 100px; /* Limita a altura máxima */
+}
+
+.chat-input-form textarea:focus {
+    outline: none;
+}
+
+.chat-input-form button {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0 15px;
+}
+
+.chat-input-form button:hover {
+    color: #0056b3;
+}
+
+/* =================================
+   AJUSTES RESPONSIVOS PARA O CHAT
+   ================================= */
+@media (max-width: 768px) {
+    main {
+        padding: 0;
+        height: calc(100vh - 75px); /* Ajusta altura para header menor */
+    }
+    .chat-container {
+        border-radius: 0;
+    }
+    .chat-sidebar {
+        flex-basis: 100%; /* Ocupa toda a largura */
+    }
+    .chat-main {
+        display: none; /* Esconde a janela de chat. Em uma implementação real, a seleção de um contato mostraria esta tela e esconderia a sidebar. */
+    }
+}
