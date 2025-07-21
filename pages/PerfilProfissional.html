@@ -4,139 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - AgeCare</title>
-    <link rel="stylesheet" href="../assents/css/PerfilProfissional.css"> 
-    
+    <link rel="stylesheet" href="../assents/css/PerfilProfissional.css">
+
+    <style>
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed; z-index: 1; left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe; margin: 15% auto; padding: 20px;
+            border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 8px;
+        }
+        .close-button {
+            color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <aside class="profile-sidebar">
-            <img src="https://i.ibb.co/6gSGLbC/profile-pic.jpg" alt="Foto de Perfil de Ana Silva" class="profile-pic">
-            <h1>Ana Silva</h1>
-            <p class="profession">Cuidadora de Idosos</p>
-            
-            <p class="bio">
-                Cuidadora dedicada e experiente, com mais de 8 anos de atuação no cuidado de idosos com mobilidade reduzida e demência. Minha missão é proporcionar conforto, segurança e qualidade de vida.
-            </p>
-            
-            <ul class="verified-docs">
-                <h3>Documentos Verificados</h3>
-                <li><span class="icon">✔</span> Certificado de Cuidador</li>
-                <li><span class="icon">✔</span> Referências Profissionais</li>
-                <li><span class="icon">✔</span> Antecedentes Criminais</li>
+<div class="container">
+    <aside class="profile-sidebar">
+    </aside>
+
+    <main class="main-content">
+        <section class="content-section" id="servicos">
+            <h2>Meus Serviços</h2>
+            <ul id="services-list-container" class="services-list" style="list-style: none; padding: 0;">
             </ul>
-            
-            <a href="#" class="edit-button" style="margin-top: 20px;">Editar Perfil</a>
-        </aside>
 
-        <main class="main-content">
-            
-            <section class="content-section" id="agendamentos">
-                <h2>Meus Agendamentos</h2>
-                <ul class="appointments-list" style="list-style: none; padding: 0;">
-                    <li class="appointment-item">
-                        <div class="appointment-details">
-                            <p><strong>Paciente:</strong> Carlos Pereira</p>
-                            <p><strong>Data:</strong> 03 de Julho de 2025 - 08:00 às 18:00</p>
-                            <p><strong>Local:</strong> Rua das Flores, 123 - Belo Horizonte</p>
-                        </div>
-                        <span class="appointment-status status-confirmed">Confirmado</span>
-                    </li>
-                    <li class="appointment-item">
-                        <div class="appointment-details">
-                            <p><strong>Paciente:</strong> Maria Souza</p>
-                            <p><strong>Data:</strong> 05 de Julho de 2025 - 09:00 às 13:00</p>
-                            <p><strong>Local:</strong> Av. Principal, 456 - Belo Horizonte</p>
-                        </div>
-                        <span class="appointment-status status-pending">Pendente</span>
-                    </li>
-                    <li class="appointment-item">
-                        <div class="appointment-details">
-                            <p><strong>Paciente:</strong> João Costa</p>
-                            <p><strong>Data:</strong> 01 de Julho de 2025 - 08:00 às 12:00</p>
-                            <p><strong>Local:</strong> Alameda dos Sonhos, 789 - Belo Horizonte</p>
-                        </div>
-                        <span class="appointment-status status-finished">Finalizado</span>
-                    </li>
-                </ul>
-            </section>
+            <a href="#" id="btn-adicionar-servico" class="edit-button" style="margin-top: 10px;">Adicionar Novo Serviço</a>
+        </section>
+    </main>
+</div>
 
-            <section class="content-section" id="pacientes">
-                <h2>Meus Clientes e Pacientes</h2>
-                <div class="patients-grid">
-
-                    <a href="perfil_paciente.html" class="patient-card-link">
-                        <div class="patient-card">
-                            <img src="https://i.ibb.co/3k5fTyt/patient1.jpg" alt="Foto do Paciente Carlos Pereira">
-                            <h3>Carlos Pereira</h3>
-                            <p class="condition">Alzheimer</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="patient-card-link">
-                        <div class="patient-card">
-                            <img src="https://i.ibb.co/SJVyJ86/patient2.jpg" alt="Foto da Paciente Maria Souza">
-                            <h3>Maria Souza</h3>
-                            <p class="condition">Pós-operatório</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="patient-card-link">
-                        <div class="patient-card">
-                            <img src="https://i.ibb.co/tZ5wK1y/patient3.jpg" alt="Foto do Paciente João Costa">
-                            <h3>João Costa</h3>
-                            <p class="condition">Mobilidade Reduzida</p>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="patient-card-link">
-                       <div class="patient-card">
-                            <img src="https://i.ibb.co/yqg6gD2/patient4.jpg" alt="Foto da Paciente Helena Martins">
-                            <h3>Helena Martins</h3>
-                            <p class="condition">Diabetes Tipo 2</p>
-                        </div>
-                    </a>
-
-                </div>
-            </section>
-            <section class="content-section" id="servicos">
-                <h2>Meus Serviços</h2>
-                <ul class="services-list" style="list-style: none; padding: 0;">
-                    <li class="service-item">
-                        <div class="service-header">
-                            <h3>Cuidados de Higiene e Conforto</h3>
-                            <span class="service-price">R$ 45,00 / hora</span>
-                        </div>
-                        <p class="service-description">
-                            Auxílio em banho, troca de fraldas, higiene oral, e cuidados para prevenção de escaras.
-                        </p>
-                    </li>
-                    <li class="service-item">
-                        <div class="service-header">
-                            <h3>Administração de Medicamentos</h3>
-                             <span class="service-price">R$ 55,00 / hora</span>
-                        </div>
-                        <p class="service-description">
-                            Controle e administração de medicamentos via oral, intramuscular e subcutânea, conforme prescrição médica.
-                        </p>
-                    </li>
-                    <li class="service-item">
-                        <div class="service-header">
-                            <h3>Plantão 12 Horas</h3>
-                            <span class="service-price">R$ 250,00 / plantão</span>
-                        </div>
-                        <p class="service-description">
-                            Acompanhamento integral do paciente durante o período diurno ou noturno, incluindo todas as rotinas de cuidado.
-                        </p>
-                    </li>
-                </ul>
-                 <a href="#" class="edit-button" style="margin-top: 10px;">Editar Serviços</a>
-            </section>
-
-        </main>
-
+<div id="modal-servico" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Cadastrar Novo Serviço</h2>
+        <form id="form-novo-servico">
+            <div class="form-group">
+                <label for="servico-nome">Nome do Serviço:</label>
+                <input type="text" id="servico-nome" required>
+            </div>
+            <div class="form-group">
+                <label for="servico-descricao">Descrição:</label>
+                <textarea id="servico-descricao" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="servico-preco">Preço (R$):</label>
+                <input type="number" id="servico-preco" step="0.01" required>
+            </div>
+            <button type="submit">Salvar Serviço</button>
+        </form>
     </div>
+</div>
+
+<script src="../assents/js/perfilProfissional.js"></script>
 
 </body>
 </html>
