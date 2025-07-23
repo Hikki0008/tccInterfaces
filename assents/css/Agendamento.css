@@ -27,16 +27,15 @@ body {
     align-items: center;
 }
 
-/* Logo e Nome Styles */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre o ícone e o texto */
+    gap: 10px;
 }
 
 .logo-icon {
     font-size: 28px;
-    color: #208ee7; /* Cor do ícone do logo */
+    color: #208ee7;
 }
 
 .logo-text {
@@ -46,7 +45,7 @@ body {
     margin: 0;
 }
 
-/* Navegação com Ícones Styles */
+/* Navigation */
 .nav ul {
     list-style: none;
     margin: 0;
@@ -56,13 +55,13 @@ body {
 }
 
 .nav ul li {
-    margin-left: 25px; /* Espaço entre os ícones */
+    margin-left: 25px;
 }
 
 .nav ul li a {
     text-decoration: none;
-    color: #555; /* Cor padrão do ícone */
-    font-size: 22px; /* Tamanho dos ícones */
+    color: #555;
+    font-size: 22px;
     transition: color 0.3s ease;
 }
 
@@ -70,13 +69,30 @@ body {
     color: #208ee7; /* Primary Blue */
 }
 
-
 /* Main Content */
 .main-content {
     padding: 30px 0;
 }
 
-/* Service Details Card */
+/* Section Styling */
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+section h3 {
+    font-size: 22px;
+    color: #1c3d5a; /* Dark Blue */
+    margin-top: 0; /* Changed from no margin-top to 0 for consistency */
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Professional/Service Details Card */
 .service-details-card {
     background-color: #fff;
     border-radius: 8px;
@@ -111,7 +127,7 @@ body {
 .service-info h2 {
     margin-top: 0;
     font-size: 28px;
-    color: #1c3d5a; /* Dark Blue */
+    color: #1c3d5a;
 }
 
 .service-meta {
@@ -126,7 +142,7 @@ body {
 }
 
 .share-button button {
-    background-color: #208ee7; /* Primary Blue */
+    background-color: #208ee7;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -143,21 +159,37 @@ body {
     background-color: #0056b3; /* Darker Blue */
 }
 
-/* Section Styling */
-section {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    padding: 25px;
-    margin-bottom: 30px;
+/* Scheduled Appointments Table */
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
-section h3 {
-    font-size: 22px;
-    color: #1c3d5a; /* Dark Blue */
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+.appointments-table th, .appointments-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.appointments-table th {
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+
+.btn-cancelar {
+    background-color: #dc3545; /* Red */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #c82333; /* Darker Red */
 }
 
 /* Description Section */
@@ -168,7 +200,7 @@ section h3 {
 }
 
 .description-section .read-more {
-    color: #208ee7; /* Primary Blue */
+    color: #208ee7;
     text-decoration: none;
     font-weight: 500;
 }
@@ -177,7 +209,7 @@ section h3 {
     text-decoration: underline;
 }
 
-/* Scheduling Section - Date and Time Pickers */
+/* Date and Time Pickers */
 .date-picker, .time-picker {
     display: flex;
     align-items: center;
@@ -211,7 +243,7 @@ section h3 {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 15px;
-    padding-bottom: 10px; /* For scrollbar */
+    padding-bottom: 10px;
 }
 
 .date-item, .time-item {
@@ -227,13 +259,7 @@ section h3 {
     scroll-snap-align: start;
 }
 
-.date-item.selected, .time-item.selected {
-    border-color: #208ee7; /* Primary Blue */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
-    background-color: #e7f3ff; /* Light Blue */
-}
-
-.date-item:hover:not(.selected), .time-item:hover:not(.selected) {
+.date-item:hover:not(.selected), .time-item:hover:not(.selected):not(.booked) {
     border-color: #a3d4ff; /* Lighter Blue */
     background-color: #f0f8ff; /* Very Light Blue */
 }
@@ -259,7 +285,34 @@ section h3 {
     display: block;
 }
 
-/* Service Types / Selection Section */
+/* Selected and Booked States for Date/Time */
+.date-item.selected, .time-item.selected {
+    border-color: #007bff;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+}
+
+.date-item.selected .day-of-week,
+.date-item.selected .day-of-month,
+.time-item.selected .time {
+    color: white;
+}
+
+.time-item.booked {
+    background-color: #f1f1f1;
+    color: #aaa;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    border-color: #e0e0e0;
+}
+
+.time-item.booked .time {
+    color: #aaa;
+}
+
+
+/* Service Selection */
 .service-selection-container {
     display: flex;
     justify-content: center;
@@ -279,6 +332,12 @@ section h3 {
     flex-direction: column;
     flex: 1 1 320px;
     max-width: 420px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-type-card.selected {
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
 }
 
 .service-type-card h4 {
@@ -307,17 +366,6 @@ section h3 {
     line-height: 1.6;
 }
 
-.service-duties {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-.service-duties li {
-    margin-bottom: 8px;
-    color: #333;
-}
-
 .service-type-card .add-to-cart {
     background-color: #208ee7;
     color: #fff;
@@ -333,8 +381,9 @@ section h3 {
 }
 
 .service-type-card .add-to-cart:hover {
-    background-color: #208ee7;
+    background-color: #0056b3;
 }
+
 
 /* Total Price Section */
 .total-price-section {
@@ -360,7 +409,7 @@ section h3 {
 }
 
 .total-price-section .buy-button {
-    background-color: #208ee7;
+    background-color: #28a745; /* Green */
     color: #fff;
     border: none;
     padding: 12px 30px;
@@ -372,7 +421,7 @@ section h3 {
 }
 
 .total-price-section .buy-button:hover {
-    background-color: #208ee7;
+    background-color: #218838; /* Darker Green */
 }
 
 /* Payment Methods Section */
@@ -446,21 +495,7 @@ section h3 {
     text-decoration: underline;
 }
 
-.security-logos {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.security-logos img {
-    height: 30px;
-    width: auto;
-    background-color: #fff;
-    padding: 5px;
-    border-radius: 4px;
-}
-
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .service-details-card {
         flex-direction: column;
@@ -516,13 +551,14 @@ section h3 {
         flex-direction: column;
         gap: 15px;
     }
-    
-    .nav ul li {
-        margin-left: 15px; /* Reduz espaço em telas muito pequenas */
+
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
     }
-    
-    .nav ul li:first-child {
-        margin-left: 0;
+
+    .nav ul li {
+        margin: 5px 10px;
     }
 
     .logo-container {
@@ -531,16 +567,12 @@ section h3 {
 
     .share-button {
         text-align: center;
+        margin-top: 15px;
     }
 
     .total-price-section {
         flex-direction: column;
-        gap: 10px;
-    }
-
-    .total-price-section .total-label,
-    .total-price-section .total-value {
-        text-align: center;
+        gap: 15px;
     }
 
     .total-price-section .buy-button {

@@ -7,18 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assents/css/Agendamento.css">
-    <style>
-        /* Estilos para a classe 'selected' que o JavaScript adiciona */
-        .date-item.selected, .time-item.selected {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-        .service-type-card.selected {
-            border: 2px solid #007bff;
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-        }
-    </style>
+
 </head>
 <body>
 <header class="header">
@@ -44,7 +33,6 @@
     <div class="container">
 
         <div class="service-details-card" id="professional-card">
-            <!-- O card do profissional continua o mesmo -->
             <div class="service-image">
                 <img id="professional-image" src="https://via.placeholder.com/300x200?text=Carregando..." alt="Foto do Profissional">
             </div>
@@ -62,15 +50,30 @@
             </div>
         </div>
 
+        <section class="scheduled-appointments-section">
+            <h3>Horários Agendados</h3>
+            <table class="appointments-table">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody id="agendamentos-marcados-container">
+                </tbody>
+            </table>
+        </section>
+
         <section class="description-section">
             <h3>Descrição do Serviço</h3>
-            <p>Selecione abaixo a data, horário e tipo de serviço desejado para agendar com o profissional. Nossa equipe é composta por profissionais qualificados e experientes, prontos para atender às suas necessidades com carinho e dedicação.</p>
+            <p>Selecione abaixo a data, horário e tipo de serviço desejado para agendar com o profissional.</p>
             <a href="#" class="read-more">Ler mais</a>
         </section>
 
         <form id="agendamento-form">
             <section class="scheduling-section">
-                <!-- Seções de data e horário continuam as mesmas -->
                 <h3>Selecione uma data</h3>
                 <div class="date-picker">
                     <button type="button" class="arrow" id="prev-date">&lt;</button>
@@ -88,12 +91,7 @@
 
             <section class="service-selection-section">
                 <h3>Selecione um tipo de serviço</h3>
-                <!--
-                  MUDANÇA PRINCIPAL: Este container agora está vazio.
-                  O JavaScript irá preenchê-lo com os serviços buscados da API.
-                -->
                 <div class="service-selection-container" id="service-cards-container">
-                    <!-- Os serviços do profissional serão carregados aqui dinamicamente -->
                 </div>
 
                 <div class="total-price-section">
@@ -105,7 +103,6 @@
         </form>
 
         <section class="payment-methods-section">
-            <!-- Seção de pagamento continua a mesma -->
             <h3>Métodos de pagamento</h3>
             <div class="payment-icons">
                 <img src="https://via.placeholder.com/50x30?text=VISA" alt="Visa">
@@ -118,7 +115,6 @@
 </main>
 
 <footer class="footer">
-    <!-- Footer continua o mesmo -->
     <div class="container footer-content">
         <div class="security-info">
             <h4>Compre com total segurança</h4>
@@ -132,241 +128,5 @@
     </div>
 </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // --- CONFIGURAÇÃO DAS URLs DA API ---
-        const AGENDAMENTO_API_URL = 'http://localhost:8080/api/agendamento';
-        const SERVICOS_API_URL = 'http://localhost:8080/api/servico';
-
-        // --- MOCK DE DADOS DO PROFISSIONAL (SIMULAÇÃO) ---
-        // Mantenha isso para carregar o perfil do profissional.
-        const mockProfissionais = {
-            '1': { id: 1, nome: 'Ana Costa', especialidade: 'Cuidadora de Idosos', localizacao: 'Belo Horizonte, MG', registro: 'Certificado Profissional', avaliacao: '4.9 (87 Avaliações)', imagemUrl: 'https://images.pexels.com/photos/4270088/pexels-photo-4270088.jpeg?auto=compress&cs=tinysrgb&w=600' },
-            '2': { id: 2, nome: 'Carlos Andrade', especialidade: 'Enfermeiro Domiciliar', localizacao: 'Contagem, MG', registro: 'COREN-MG 123.456', avaliacao: '5.0 (112 Avaliações)', imagemUrl: 'https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=600' }
-        };
-
-        async function getProfessionalById(id) {
-            return new Promise(resolve => setTimeout(() => resolve(mockProfissionais[id]), 200));
-        }
-
-        // --- SELEÇÃO DOS ELEMENTOS DO DOM ---
-        const agendamentoForm = document.getElementById('agendamento-form');
-        const dateContainer = document.getElementById('date-items-container');
-        const timeContainer = document.getElementById('time-items-container');
-        const serviceCardsContainer = document.getElementById('service-cards-container'); // Container dinâmico
-        const subtotalValueElement = document.getElementById('subtotal-value');
-
-        // Elementos do card do profissional
-        const professionalImage = document.getElementById('professional-image');
-        const professionalName = document.getElementById('professional-name');
-        const professionalSpecialty = document.getElementById('professional-specialty');
-        const professionalLocation = document.getElementById('professional-location');
-        const professionalRegistry = document.getElementById('professional-registry');
-        const professionalRating = document.getElementById('professional-rating');
-
-        // --- ESTADO DO AGENDAMENTO ---
-        let agendamentoState = {
-            data: null,
-            horario: null,
-            servicoSelecionado: null, // Armazena o objeto do serviço completo
-            idProfissional: null
-        };
-
-        // --- FUNÇÕES DE RENDERIZAÇÃO E LÓGICA ---
-
-        function populateProfessionalCard(professional) {
-            professionalImage.src = professional.imagemUrl;
-            professionalName.textContent = professional.nome;
-            professionalSpecialty.innerHTML = `<i class="fas fa-user-md"></i> ${professional.especialidade}`;
-            professionalLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${professional.localizacao}`;
-            professionalRegistry.innerHTML = `<i class="fas fa-id-card"></i> ${professional.registro}`;
-            professionalRating.innerHTML = `<i class="fas fa-star"></i> ${professional.avaliacao}`;
-        }
-
-        function populateDates() { /* ...código para popular datas permanece o mesmo... */
-            dateContainer.innerHTML = '';
-            const today = new Date();
-            for (let i = 0; i < 7; i++) {
-                const date = new Date(today);
-                date.setDate(today.getDate() + i);
-                if (date.getDay() === 0) continue;
-                const dayOfWeek = date.toLocaleDateString('pt-BR', { weekday: 'short' }).slice(0,3);
-                const dayOfMonth = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
-                const dateValue = date.toISOString().split('T')[0];
-                const dateItem = document.createElement('div');
-                dateItem.classList.add('date-item');
-                dateItem.setAttribute('data-date', dateValue);
-                dateItem.innerHTML = `<span class="day-of-week">${dayOfWeek}</span><span class="day-of-month">${dayOfMonth.replace('.', '')}</span>`;
-                dateContainer.appendChild(dateItem);
-            }
-        }
-
-        function populateTimes() { /* ...código para popular horários permanece o mesmo... */
-            timeContainer.innerHTML = '';
-            const horarios = ['09:30', '10:30', '11:30', '13:30', '14:30', '15:30', '16:30', '17:30'];
-            horarios.forEach(horario => {
-                const timeItem = document.createElement('div');
-                timeItem.classList.add('time-item');
-                timeItem.innerHTML = `<span class="time">${horario}</span>`;
-                timeContainer.appendChild(timeItem);
-            });
-        }
-
-        function updateSubtotal() {
-            const valor = agendamentoState.servicoSelecionado ? agendamentoState.servicoSelecionado.preco : 0;
-            subtotalValueElement.textContent = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-
-        /**
-         * NOVO: Carrega os serviços da API e os exibe na tela.
-         */
-        async function carregarServicos() {
-            try {
-                const response = await fetch(SERVICOS_API_URL);
-                if (!response.ok) throw new Error('Falha ao buscar serviços.');
-
-                const servicos = await response.json();
-                serviceCardsContainer.innerHTML = ''; // Limpa o container
-
-                servicos.forEach(servico => {
-                    const card = document.createElement('div');
-                    card.className = 'service-type-card';
-                    // Armazena os dados do serviço no próprio elemento
-                    card.dataset.serviceId = servico.id;
-                    card.dataset.serviceNome = servico.nome;
-                    card.dataset.servicePreco = servico.preco;
-
-                    card.innerHTML = `
-                    <h4>${servico.nome.toUpperCase()}</h4>
-                    <p class="price">A partir de ${Number(servico.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                    <div class="details">
-                        <p>${servico.descricao}</p>
-                    </div>
-                    <button type="button" class="add-to-cart">Adicionar</button>
-                `;
-                    serviceCardsContainer.appendChild(card);
-                });
-
-            } catch (error) {
-                console.error("Erro ao carregar serviços:", error);
-                serviceCardsContainer.innerHTML = `<p style="color: red;">Não foi possível carregar os serviços disponíveis.</p>`;
-            }
-        }
-
-        // --- EVENT LISTENERS (AÇÕES DO USUÁRIO) ---
-
-        dateContainer.addEventListener('click', (event) => { /* ...lógica de data permanece a mesma... */
-            const target = event.target.closest('.date-item');
-            if (!target) return;
-            dateContainer.querySelector('.selected')?.classList.remove('selected');
-            target.classList.add('selected');
-            agendamentoState.data = target.getAttribute('data-date');
-        });
-
-        timeContainer.addEventListener('click', (event) => { /* ...lógica de horário permanece a mesma... */
-            const target = event.target.closest('.time-item');
-            if (!target) return;
-            timeContainer.querySelector('.selected')?.classList.remove('selected');
-            target.classList.add('selected');
-            agendamentoState.horario = target.querySelector('.time').textContent;
-        });
-
-        /**
-         * MUDANÇA: Usa delegação de eventos para lidar com cliques nos cards de serviço
-         * que foram criados dinamicamente.
-         */
-        serviceCardsContainer.addEventListener('click', (event) => {
-            if (event.target.classList.contains('add-to-cart')) {
-                const card = event.target.closest('.service-type-card');
-                if (!card) return;
-
-                // Remove a seleção de outros cards
-                serviceCardsContainer.querySelector('.selected')?.classList.remove('selected');
-                // Adiciona a seleção ao card clicado
-                card.classList.add('selected');
-
-                // Atualiza o estado do agendamento com os dados do card
-                agendamentoState.servicoSelecionado = {
-                    id: card.dataset.serviceId,
-                    nome: card.dataset.serviceNome,
-                    preco: parseFloat(card.dataset.servicePreco)
-                };
-
-                updateSubtotal();
-            }
-        });
-
-        // Evento de submissão do formulário
-        agendamentoForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            if (!agendamentoState.data || !agendamentoState.horario || !agendamentoState.servicoSelecionado) {
-                alert('Por favor, selecione data, horário e um tipo de serviço.');
-                return;
-            }
-            if (!agendamentoState.idProfissional) {
-                alert('Erro: ID do profissional não encontrado. Volte e selecione um profissional novamente.');
-                return;
-            }
-
-            // Objeto a ser enviado para o backend
-            const agendamentoParaSalvar = {
-                dataAgendamento: agendamentoState.data,
-                horarioAgendamento: agendamentoState.horario,
-                tipoServico: agendamentoState.servicoSelecionado.nome, // Envia o nome do serviço
-                valor: agendamentoState.servicoSelecionado.preco,      // Envia o preço
-                status: 'PENDENTE',
-                idProfissional: agendamentoState.idProfissional
-                // idCliente: 1, // Você precisará obter o ID do cliente logado
-            };
-
-            console.log('Enviando para o backend:', JSON.stringify(agendamentoParaSalvar));
-
-            try {
-                const response = await fetch(AGENDAMENTO_API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(agendamentoParaSalvar),
-                });
-                if (!response.ok) throw new Error('Falha na requisição: ' + response.statusText);
-
-                const data = await response.json();
-                alert(`Agendamento #${data.id} realizado com sucesso para ${professionalName.textContent}!`);
-                location.reload();
-            } catch (error) {
-                console.error('Erro ao salvar agendamento:', error);
-                alert('Não foi possível realizar o agendamento. Verifique se o servidor backend está ativo e tente novamente.');
-            }
-        });
-
-        // --- INICIALIZAÇÃO DA PÁGINA ---
-        async function initializePage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const professionalId = urlParams.get('id');
-
-            if (!professionalId) {
-                document.querySelector('.main-content').innerHTML = '<h1>Erro: Nenhum profissional selecionado.</h1><p>Por favor, volte à página anterior e escolha um profissional para agendar.</p>';
-                return;
-            }
-
-            try {
-                const professionalData = await getProfessionalById(professionalId);
-                populateProfessionalCard(professionalData);
-                agendamentoState.idProfissional = professionalData.id;
-
-                // Carrega as informações dinâmicas
-                await carregarServicos(); // NOVO
-                populateDates();
-                populateTimes();
-
-            } catch (error) {
-                document.querySelector('.main-content').innerHTML = `<h1>Erro: Profissional não encontrado.</h1><p>${error}</p>`;
-            }
-        }
-
-        initializePage();
-    });
-</script>
-</body>
+<script src="../assents/js/agendamento.js"></script> </body>
 </html>

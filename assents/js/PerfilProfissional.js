@@ -1,220 +1,179 @@
-document.addEventListener('DOMContentLoaded', function() {
+/**
+ * Script para gerenciar a página de perfil do profissional.
+ * - Carrega dados do profissional e seus agendamentos.
+ * - Gerencia a exibição e cadastro de novos serviços.
+ */
 
-    // --- Seletores de Elementos do DOM ---
+// --- URL Base da API ---
+// Certifique-se de que a porta (ex: 8080) está correta.
+const API_BASE_URL = 'http://localhost:8080/api';
+
+/**
+ * Função principal que é executada quando o conteúdo da página é carregado.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Pega o ID do profissional da URL
+    const params = new URLSearchParams(window.location.search);
+    const profissionalId = params.get('id');
+
+    if (!profissionalId) {
+        alert("ID do profissional não encontrado na URL. Certifique-se que o link seja como: 'PerfilProfissional.html?id=1'");
+        document.querySelector('.main-content').innerHTML = '<h1>Erro: ID do profissional não fornecido.</h1>';
+        return;
+    }
+
+    // 2. Carrega os dados do profissional e os agendamentos em paralelo
+    carregarDadosDoPerfil(profissionalId);
+
+    // 3. Configura a lógica do modal de serviços
+    configurarModalServico(profissionalId);
+});
+
+/**
+ * Carrega e exibe os dados do profissional e seus agendamentos.
+ * @param {string} id - O ID do profissional.
+ */
+async function carregarDadosDoPerfil(id) {
+    try {
+        // Usa Promise.all para buscar dados do profissional e agendamentos simultaneamente
+        const [profissionalResponse, agendamentosResponse] = await Promise.all([
+            fetch(`${API_BASE_URL}/profissional/${id}`),
+            fetch(`${API_BASE_URL}/agendamento`) // Busca todos os agendamentos
+        ]);
+
+        // Trata a resposta dos dados do profissional
+        if (!profissionalResponse.ok) {
+            throw new Error('Falha ao buscar dados do profissional. Verifique o ID e a API.');
+        }
+        const profissional = await profissionalResponse.json();
+        preencherDadosProfissional(profissional);
+
+        // Trata a resposta dos agendamentos
+        if (!agendamentosResponse.ok) {
+            throw new Error('Falha ao buscar a lista de agendamentos.');
+        }
+        const todosAgendamentos = await agendamentosResponse.json();
+
+        // Filtra os agendamentos para mostrar apenas os deste profissional
+        // ATENÇÃO: Assumindo que o objeto de agendamento tem um campo `profissional` com um `id` dentro.
+        // Ex: agendamento = { ..., profissional: { id: 1, nome: 'Dr. João' }, ... }
+        const agendamentosDoProfissional = todosAgendamentos.filter(agendamento =>
+            agendamento.profissional && agendamento.profissional.id == id
+        );
+        preencherAgendamentos(agendamentosDoProfissional);
+
+    } catch (error) {
+        console.error('Erro ao carregar dados do perfil:', error);
+        alert(`Erro: ${error.message}`);
+    }
+}
+
+/**
+ * Preenche a seção "Meus Dados" no HTML com as informações do profissional.
+ * @param {object} profissional - O objeto com os dados do profissional vindo da API.
+ */
+function preencherDadosProfissional(profissional) {
+    document.getElementById('prof-nome').textContent = profissional.nome || 'Não informado';
+    document.getElementById('prof-email').textContent = profissional.email || 'Não informado';
+    document.getElementById('prof-telefone').textContent = profissional.telefone || 'Não informado';
+    document.getElementById('prof-especialidade').textContent = profissional.especialidade || 'Não informada';
+    // Preencha outros campos aqui, se houver
+}
+
+/**
+ * Preenche a tabela de agendamentos no HTML.
+ * @param {Array} agendamentos - A lista de agendamentos do profissional.
+ */
+function preencherAgendamentos(agendamentos) {
+    const container = document.getElementById('agendamentos-list-container');
+    container.innerHTML = ''; // Limpa a tabela antes de preencher
+
+    if (agendamentos.length === 0) {
+        container.innerHTML = '<tr><td colspan="4">Nenhum agendamento encontrado.</td></tr>';
+        return;
+    }
+
+    agendamentos.forEach(agendamento => {
+        const tr = document.createElement('tr');
+
+        // ATENÇÃO: Assumindo a estrutura do seu AgendamentoModel e PacienteModel
+        const pacienteNome = agendamento.paciente ? agendamento.paciente.nome : 'Paciente não informado';
+
+        tr.innerHTML = `
+            <td>${new Date(agendamento.data).toLocaleDateString('pt-BR')}</td>
+            <td>${agendamento.hora || 'N/A'}</td>
+            <td>${pacienteNome}</td>
+            <td>${agendamento.status || 'N/A'}</td>
+        `;
+        container.appendChild(tr);
+    });
+}
+
+
+/**
+ * Configura os eventos para abrir, fechar e submeter o modal de cadastro de serviço.
+ * @param {string} profissionalId - O ID do profissional ao qual o serviço será associado.
+ */
+function configurarModalServico(profissionalId) {
     const modal = document.getElementById('modal-servico');
-    const btnAbrirModal = document.getElementById('btn-adicionar-servico');
-    const btnFecharModal = document.querySelector('.close-button');
+    const btnAbrir = document.getElementById('btn-adicionar-servico');
+    const btnFechar = modal.querySelector('.close-button');
     const form = document.getElementById('form-novo-servico');
-    const servicesListContainer = document.getElementById('services-list-container');
-    const modalTitle = modal.querySelector('h2');
-    const formSubmitButton = form.querySelector('button[type="submit"]');
 
-    // --- Configuração da API ---
-    // A URL base do seu backend. Ajuste a porta se for diferente (ex: 8080).
-    const API_BASE_URL = 'http://localhost:8080/api/servico';
-
-    // --- Lógica de Controle do Modal ---
-
-    // Abre o modal em modo "Criar"
-    btnAbrirModal.onclick = function() {
-        form.reset(); // Limpa o formulário
-        modalTitle.textContent = 'Cadastrar Novo Serviço';
-        formSubmitButton.textContent = 'Salvar Serviço';
-        // Garante que não há ID de edição
-        document.getElementById('servico-id')?.remove();
+    // Abre o modal
+    btnAbrir.onclick = (e) => {
+        e.preventDefault();
         modal.style.display = 'block';
-    }
+    };
 
-    // Fecha o modal
-    btnFecharModal.onclick = function() {
+    // Fecha o modal pelo botão 'X'
+    btnFechar.onclick = () => {
         modal.style.display = 'none';
-    }
+    };
 
-    // Fecha o modal se clicar fora dele
-    window.onclick = function(event) {
+    // Fecha o modal ao clicar fora dele
+    window.onclick = (event) => {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
-    }
+    };
 
-    // --- Funções CRUD (Create, Read, Update, Delete) ---
-
-    /**
-     * READ: Busca todos os serviços no backend e os exibe na tela.
-     * Corresponde ao endpoint: GET /api/servico
-     */
-    async function carregarServicos() {
-        try {
-            const response = await fetch(API_BASE_URL);
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
-            }
-            const servicos = await response.json();
-
-            servicesListContainer.innerHTML = ''; // Limpa a lista atual
-
-            if (servicos.length === 0) {
-                servicesListContainer.innerHTML = '<p>Nenhum serviço cadastrado ainda.</p>';
-                return;
-            }
-
-            servicos.forEach(servico => {
-                const servicoItem = document.createElement('li');
-                servicoItem.className = 'service-item';
-                // Adiciona um data-id para facilitar a busca do elemento depois
-                servicoItem.dataset.id = servico.id;
-
-                servicoItem.innerHTML = `
-                    <div class="service-header">
-                        <h3>${servico.nome}</h3>
-                        <span class="service-price">R$ ${Number(servico.preco).toFixed(2)} / hora</span>
-                    </div>
-                    <p class="service-description">${servico.descricao}</p>
-                    <div class="service-actions">
-                        <button class="action-button edit-btn">Editar</button>
-                        <button class="action-button delete-btn">Deletar</button>
-                    </div>
-                `;
-                servicesListContainer.appendChild(servicoItem);
-            });
-
-        } catch (error) {
-            console.error('Falha ao carregar serviços:', error);
-            servicesListContainer.innerHTML = '<p style="color: red;">Erro ao carregar os serviços. Verifique a conexão com o servidor.</p>';
-        }
-    }
-
-    /**
-     * Event Listener para o formulário (Criação e Atualização).
-     * CREATE: POST /api/servico
-     * UPDATE: PUT /api/servico/{id}
-     */
-    form.addEventListener('submit', async function(event) {
+    // Lida com o envio do formulário
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        const idInput = document.getElementById('servico-id');
-        const id = idInput ? idInput.value : null;
 
         const servicoData = {
             nome: document.getElementById('servico-nome').value,
             descricao: document.getElementById('servico-descricao').value,
-            preco: parseFloat(document.getElementById('servico-preco').value)
+            preco: parseFloat(document.getElementById('servico-preco').value),
+            profissionalId: profissionalId // Associando o serviço ao profissional
         };
 
-        const isUpdating = id !== null;
-        const url = isUpdating ? `${API_BASE_URL}/${id}` : API_BASE_URL;
-        const method = isUpdating ? 'PUT' : 'POST';
-
+        // **IMPORTANTE**: Você precisa ter um endpoint no backend para salvar serviços.
+        // Exemplo: POST /api/servicos
         try {
-            const response = await fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            // Supondo um endpoint /api/servicos
+            const response = await fetch(`${API_BASE_URL}/servicos`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(servicoData)
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || `Erro ao ${isUpdating ? 'atualizar' : 'salvar'} serviço.`);
+                throw new Error(errorData.message || 'Falha ao salvar o serviço.');
             }
 
-            alert(`Serviço ${isUpdating ? 'atualizado' : 'cadastrado'} com sucesso!`);
+            const novoServico = await response.json();
+            alert(`Serviço "${novoServico.nome}" salvo com sucesso!`);
             form.reset();
             modal.style.display = 'none';
-            carregarServicos(); // Atualiza a lista na tela
+            // Aqui você deveria recarregar a lista de serviços na tela
+            // carregarServicos(profissionalId); // Exemplo de função a ser criada
 
         } catch (error) {
-            console.error('Falha na operação:', error);
+            console.error('Erro ao salvar serviço:', error);
             alert(`Erro: ${error.message}`);
         }
     });
-
-    /**
-     * Listener para cliques na lista de serviços (Delegação de Eventos).
-     * Identifica se o clique foi no botão de Editar ou Deletar.
-     */
-    servicesListContainer.addEventListener('click', function(event) {
-        const target = event.target;
-        const serviceItem = target.closest('.service-item');
-        if (!serviceItem) return;
-
-        const id = serviceItem.dataset.id;
-
-        if (target.classList.contains('edit-btn')) {
-            abrirModalParaEdicao(id);
-        } else if (target.classList.contains('delete-btn')) {
-            deletarServico(id);
-        }
-    });
-
-    /**
-     * UPDATE (Parte 1): Prepara o modal para edição.
-     * Busca os dados do serviço e preenche o formulário.
-     */
-    async function abrirModalParaEdicao(id) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/${id}`);
-            if (!response.ok) {
-                throw new Error('Serviço não encontrado.');
-            }
-            const servico = await response.json();
-
-            // Preenche o formulário com os dados do serviço
-            document.getElementById('servico-nome').value = servico.nome;
-            document.getElementById('servico-descricao').value = servico.descricao;
-            document.getElementById('servico-preco').value = servico.preco;
-
-            // Adiciona um campo oculto com o ID para o submit saber que é uma edição
-            // Remove o campo antigo se existir
-            document.getElementById('servico-id')?.remove();
-            const idInput = document.createElement('input');
-            idInput.type = 'hidden';
-            idInput.id = 'servico-id';
-            idInput.value = id;
-            form.appendChild(idInput);
-
-            // Ajusta o modal para o modo de edição
-            modalTitle.textContent = 'Editar Serviço';
-            formSubmitButton.textContent = 'Atualizar Serviço';
-            modal.style.display = 'block';
-
-        } catch (error) {
-            console.error('Falha ao buscar serviço para edição:', error);
-            alert(error.message);
-        }
-    }
-
-    /**
-     * DELETE: Deleta um serviço do backend.
-     * Corresponde ao endpoint: DELETE /api/servico/{id}
-     */
-    async function deletarServico(id) {
-        if (!confirm('Tem certeza que deseja deletar este serviço? Esta ação não pode ser desfeita.')) {
-            return;
-        }
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/${id}`, {
-                method: 'DELETE'
-            });
-
-
-            if (!response.ok) {
-                throw new Error('Falha ao deletar o serviço.');
-            }
-
-            alert('Serviço deletado com sucesso!');
-            carregarServicos(); // Atualiza a lista na tela
-
-        } catch (error) {
-            console.error('Falha ao deletar serviço:', error);
-            alert(error.message);
-        }
-    }
-
-    // --- Inicialização ---
-    // Carrega os serviços existentes assim que a página é carregada.
-    carregarServicos();
-
-});
+}

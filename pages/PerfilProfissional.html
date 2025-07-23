@@ -15,11 +15,33 @@
         }
         .modal-content {
             background-color: #fefefe; margin: 15% auto; padding: 20px;
-            border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 8px;
+            border: 1px solid #888; width: 80%; max-width: 600px; border-radius: 8px;
         }
         .close-button {
             color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
         }
+        /* Estilos adicionais para clareza */
+        .profile-details p {
+            margin: 8px 0;
+        }
+        .profile-details strong {
+            display: inline-block;
+            width: 120px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #agendamentos-list-container tr:nth-child(even){background-color: #f9f9f9;}
     </style>
 </head>
 <body>
@@ -29,6 +51,35 @@
     </aside>
 
     <main class="main-content">
+        <section class="content-section" id="dados-profissionais">
+            <h2>Meus Dados</h2>
+            <div id="profile-details-container" class="profile-details">
+                <p><strong>Nome:</strong> <span id="prof-nome">Carregando...</span></p>
+                <p><strong>Email:</strong> <span id="prof-email">Carregando...</span></p>
+                <p><strong>Telefone:</strong> <span id="prof-telefone">Carregando...</span></p>
+                <p><strong>Especialidade:</strong> <span id="prof-especialidade">Carregando...</span></p>
+            </div>
+            <a href="#" class="edit-button" style="margin-top: 10px;">Editar Perfil</a>
+        </section>
+
+        <section class="content-section" id="agendamentos">
+            <h2>Meus Agendamentos</h2>
+            <div id="agendamentos-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Paciente</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="agendamentos-list-container">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <section class="content-section" id="servicos">
             <h2>Meus Serviços</h2>
             <ul id="services-list-container" class="services-list" style="list-style: none; padding: 0;">
