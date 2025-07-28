@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil - AgeCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../assents/css/PerfilProfissional.css">
+  <link rel="stylesheet" href="../assents/css/PerfilEditar.css"> </head>
+<body>
+
+<div class="container edit-mode">
+  <aside class="profile-sidebar">
+
+    <form id="form-editar-perfil" method="POST">
+      <h2>Editar Perfil Profissional</h2>
+
+      <div class="form-group">
+        <label for="prof-nome-edit">Nome Completo</label>
+        <input type="text" id="prof-nome-edit" name="nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="prof-especialidade-edit">Especialidade</label>
+        <input type="text" id="prof-especialidade-edit" name="especialidade" required>
+      </div>
+
+      <div class="form-group">
+        <label for="prof-email-edit">E-mail</label>
+        <input type="email" id="prof-email-edit" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="prof-telefone-edit">Telefone</label>
+        <input type="tel" id="prof-telefone-edit" name="telefone" required>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a href="#" id="btn-cancelar" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </aside>
+</div>
+
+<script>
+  // Script para garantir que o botão "Cancelar" volte para a página certa
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const profissionalId = params.get('id');
+    if (profissionalId) {
+      const cancelButton = document.getElementById('btn-cancelar');
+      cancelButton.href = `perfil_visualizacao.html?id=${profissionalId}`;
+    }
+  });
+</script>
+<script src="../assents/js/perfil_editar.js" defer></script>
+</body>
+</html>

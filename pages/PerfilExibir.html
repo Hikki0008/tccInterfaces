@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Profissional - AgeCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../assents/css/PerfilProfissional.css"> <link rel="stylesheet" href="../assents/css/Modal.css"> </head>
+<body>
+
+<div class="container">
+  <aside class="profile-sidebar">
+    <img src="https://i.ibb.co/default-avatar.png" alt="Foto do Profissional" class="profile-pic">
+
+    <h1 id="prof-nome">Carregando...</h1>
+
+    <p class="role" id="prof-especialidade">Carregando...</p>
+
+    <div class="contact-info">
+      <h3>Informações de Contato</h3>
+      <p><i class="fas fa-envelope"></i> <span id="prof-email">Carregando...</span></p>
+      <p><i class="fas fa-phone"></i> <span id="prof-telefone">Carregando...</span></p>
+    </div>
+
+    <a href="#" id="btn-editar-perfil" class="edit-button">Editar Perfil</a>
+  </aside>
+
+  <main class="main-content">
+
+    <section class="content-section">
+      <div class="section-header">
+        <h2>Meus Agendamentos</h2>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Paciente</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody id="agendamentos-list-container">
+          <tr><td colspan="4">Carregando agendamentos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-header">
+        <h2>Meus Serviços</h2>
+        <a href="#" id="btn-adicionar-servico" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Serviço</a>
+      </div>
+      <div id="servicos-list">
+        <p>Nenhum serviço cadastrado.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="modal-servico" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Adicionar Novo Serviço</h2>
+    <form id="form-novo-servico">
+      <div class="form-group">
+        <label for="servico-nome">Nome do Serviço</label>
+        <input type="text" id="servico-nome" required>
+      </div>
+      <div class="form-group">
+        <label for="servico-descricao">Descrição</label>
+        <textarea id="servico-descricao" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="servico-preco">Preço (R$)</label>
+        <input type="number" id="servico-preco" step="0.01" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Salvar Serviço</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Script simples para garantir que o botão de editar leve para a página correta com o ID
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const profissionalId = params.get('id');
+    if (profissionalId) {
+      const editButton = document.getElementById('btn-editar-perfil');
+      editButton.href = `perfil_editar.html?id=${profissionalId}`;
+    }
+  });
+</script>
+<script src="../assents/js/perfil_visualizacao.js" defer></script>
+</body>
+</html>
