@@ -29,7 +29,7 @@ function cadastrar(event) {
     submitBtn.textContent = "Cadastrando...";
 
 
-    fetch('http://localhost:8080/api/Cliente', {
+    fetch('http://localhost:8080/api/usuarios', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

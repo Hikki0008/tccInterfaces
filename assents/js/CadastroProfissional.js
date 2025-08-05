@@ -27,7 +27,7 @@ function cadastrar(event) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Cadastrando...";
 
-    fetch('http://localhost:8080/api/Profissional', {
+    fetch('http://localhost:8080/api/profissional', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -11,14 +11,14 @@
 
     <div class="container">
         <aside class="profile-sidebar">
-            <img src="https://i.ibb.co/pPz7y4f/client1.jpg" alt="Foto da Cliente Lúcia Pereira" class="profile-pic">
-            <h1>Lúcia Pereira</h1>
-            <p class="role">Cliente / Responsável</p>
+            <img src="https://i.ibb.co/pPz7y4f/client1.jpg" alt="Foto da Cliente" class="profile-pic">
+            <h1 id="cliente-nome">Carregando...</h1>
+            <p class="role">Cliente</p>
             
             <div class="contact-info">
                 <h3>Informações de Contato</h3>
-                <p><i class="fas fa-envelope"></i> lucia.p@email.com</p>
-                <p><i class="fas fa-phone"></i> (31) 99876-5432</p>
+                <p><i class="fas fa-envelope"></i> <span id="cliente-email">Carregando...</span></p>
+                <p><i class="fas fa-phone"></i> <span id="cliente-telefone">Carregando...</span></p>
             </div>
             
             <a href="#" class="edit-button">Editar Perfil</a>
@@ -29,16 +29,9 @@
             <section class="content-section">
                 <div class="section-header">
                     <h2>Meus Pacientes</h2>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Paciente</a>
+                    <a href="RegistrarPaciente.html" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Paciente</a>
                 </div>
-                <div class="patients-grid">
-                    <a href="perfil_paciente.html" class="patient-card-link">
-                        <div class="patient-card">
-                            <img src="https://i.ibb.co/3k5fTyt/patient1.jpg" alt="Foto do Paciente Carlos Pereira">
-                            <h3>Carlos Pereira</h3>
-                            <p class="relationship">Pai</p>
-                        </div>
-                    </a>
+                <div class="patients-grid" id="patients-list-container">
                     <a href="#" class="patient-card-link">
                         <div class="patient-card add-new">
                             <div class="add-icon"><i class="fas fa-user-plus"></i></div>
@@ -51,34 +44,11 @@
             <section class="content-section">
                 <div class="section-header">
                     <h2>Meus Endereços de Atendimento</h2>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Endereço</a>
+                    <a href="CadastrarEndereco.html" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Endereço</a>
                 </div>
-                <div class="address-list">
-                    <div class="address-card">
-                        <div class="address-details">
-                            <p class="address-nickname"><i class="fas fa-map-marker-alt"></i> Residência Principal</p>
-                            <p class="address-full">Rua das Flores, 123 - Bairro Anchieta, Belo Horizonte - MG</p>
-                        </div>
-                        <div class="address-actions">
-                            <a href="#" class="action-btn" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="action-btn" title="Excluir"><i class="fas fa-trash-alt"></i></a>
-                        </div>
+                <div class="address-list" id="address-list-container">
                     </div>
-                     <div class="address-card">
-                        <div class="address-details">
-                            <p class="address-nickname"><i class="fas fa-map-marker-alt"></i> Casa de Campo</p>
-                            <p class="address-full">Alameda das Montanhas, 789 - Condomínio Retiro da Pedra, Brumadinho - MG</p>
-                        </div>
-                        <div class="address-actions">
-                            <a href="#" class="action-btn" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="action-btn" title="Excluir"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
             </section>
 
         </main>
     </div>
-
-</body>
-</html>

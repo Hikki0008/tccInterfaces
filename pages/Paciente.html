@@ -4,101 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Paciente - AgeCare</title>
-    </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../assents/css/Paciente.css">
+</head>
 <body>
 
     <div class="container">
         
         <aside class="profile-sidebar">
-            <img src="https://i.ibb.co/3k5fTyt/patient1.jpg" alt="Foto do Paciente Carlos Pereira" class="profile-pic">
-            <h1>Carlos Pereira</h1>
-            <p class="profession">82 anos, Masculino</p>
+            <img id="paciente-foto" src="" alt="Foto do Paciente" class="profile-pic">
+            <h1 id="paciente-nome">Carregando...</h1>
+            <p id="paciente-info-basica" class="profession">Carregando...</p>
             
             <div class="patient-section">
                 <h3>Condição Principal</h3>
-                <p>Doença de Alzheimer em estágio moderado. Hipertenso.</p>
+                <p id="paciente-condicao">Carregando...</p>
             </div>
             
             <div class="patient-section critical-info">
                 <h3><span class="icon">⚠️</span> Alergias</h3>
-                <p>Alérgico a Penicilina e a Camarão.</p>
+                <p id="paciente-alergias">Carregando...</p>
             </div>
 
             <div class="patient-section">
                 <h3>Informações de Contato</h3>
-                <p><strong>CPF:</strong> ***.789.123-**</p>
-                <p><strong>Emergência:</strong> (31) 99876-5432 (Filha - Lúcia)</p>
+                <p><strong>CPF:</strong> <span id="paciente-cpf">Carregando...</span></p>
+                <p><strong>Emergência:</strong> <span id="paciente-contato-emergencia">Carregando...</span></p>
             </div>
             
-            <a href="index.html" class="edit-button" style="margin-top: 20px;">← Voltar para meu perfil</a>
+            <a href="perfil_cliente.html" id="btn-voltar" class="edit-button" style="margin-top: 20px;">← Voltar para meu perfil</a>
         </aside>
 
         <main class="main-content">
             
-            <section class="content-section" id="acoes">
-                <h2>Ações Rápidas</h2>
-                <div class="actions-grid">
-                    <div class="action-card">
-                        <div class="icon">📝</div>
-                        <h3>Adicionar Relatório</h3>
-                    </div>
-                    <div class="action-card">
-                        <div class="icon">📅</div>
-                        <h3>Visualizar Agendamentos</h3>
-                    </div>
-                </div>
-            </section>
-
             <section class="content-section" id="medicamentos">
                 <h2>Medicamentos em Uso</h2>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li class="service-item">
-                        <strong>Donepezila 5mg:</strong> 1 comprimido à noite, após o jantar.
-                    </li>
-                    <li class="service-item">
-                        <strong>Losartana 50mg:</strong> 1 comprimido pela manhã, em jejum.
-                    </li>
-                     <li class="service-item">
-                        <strong>Vitamina D 2000UI:</strong> 1 comprimido após o almoço.
-                    </li>
+                <ul id="medicamentos-list-container" style="list-style: none; padding-left: 0;">
+                    <p>Carregando medicamentos...</p>
                 </ul>
             </section>
             
             <section class="content-section" id="relatorios">
                 <h2>Histórico de Relatórios</h2>
-                <div class="report-list">
-                    <div class="report-item">
-                        <p>Paciente apresentou-se um pouco agitado no período da manhã, mas acalmou-se após a medicação. Aceitou bem o almoço e participou de uma curta caminhada no jardim.</p>
-                        <p class="report-meta"><strong>Relatado por:</strong> Ana Silva - <strong>Data:</strong> 03 de Julho de 2025</p>
-                    </div>
-                     <div class="report-item">
-                        <p>Dia tranquilo. Paciente colaborativo durante o banho e as refeições. Apresentou boa interação durante a visita da família à tarde.</p>
-                        <p class="report-meta"><strong>Relatado por:</strong> Ana Silva - <strong>Data:</strong> 01 de Julho de 2025</p>
-                    </div>
+                <div id="relatorios-list-container" class="report-list">
+                    <p>Carregando relatórios...</p>
                 </div>
             </section>
-
+            
             <section class="content-section" id="agendamentos">
                 <h2>Próximos Agendamentos</h2>
-                <div class="appointments-list">
-                    <div class="appointment-item-patient">
-                        <p><strong>Profissional:</strong> Dr. Fernando Guimarães (Geriatra)</p>
-                        <p><strong>Data:</strong> 15 de Julho de 2025 - 14:30</p>
-                        <p><strong>Local:</strong> Clínica Bem Viver - Rua da Saúde, 100</p>
-                        <p class="appointment-meta">Status: <strong>Confirmado</strong></p>
-                    </div>
-                     <div class="appointment-item-patient">
-                        <p><strong>Profissional:</strong> Ana Silva (Cuidadora)</p>
-                        <p><strong>Data:</strong> 09 de Julho de 2025 - 08:00 às 18:00</p>
-                        <p><strong>Local:</strong> Residência do paciente</p>
-                         <p class="appointment-meta">Status: <strong>Confirmado</strong></p>
-                    </div>
+                <div id="agendamentos-list-container" class="appointments-list">
+                    <p>Carregando agendamentos...</p>
                 </div>
             </section>
 
         </main>
-
     </div>
+
+    <script src="../assents/js/Paciente.js"></script>
 
 </body>
 </html>
