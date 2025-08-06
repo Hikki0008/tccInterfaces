@@ -1,65 +1,46 @@
 class LoginForm {
-    constructor(formSelector) {
-        this.form = document.querySelector(formSelector);
-        this.emailInput = document.querySelector("#email");
-        this.passwordInput = document.querySelector("#sen");
-        this.submitButton = document.querySelector("#cad");
+    constructor(formId) {
+        this.form = document.getElementById(formId);
+        this.emailInput = document.getElementById('idemail');
+        this.passwordInput = document.getElementById('idsenha');
+        this.submitButton = this.form.querySelector('button[type="submit"]');
 
-        // URL do seu endpoint de login.
-        // Substitua 'http://localhost:8080/api/login' pela URL correta da sua API,
-        // se for diferente.
-        this.loginUrl = 'http://localhost:8080/api/login'; 
-
-        if (this.form) {
-            this.attachEventListeners();
-        } else {
-            console.error("Formulário não encontrado.");
-        }
+        this.form.addEventListener('submit', this.handleSubmit.bind(this));
     }
 
-    attachEventListeners() {
-        this.form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            this.handleSubmit();
-        });
-    }
-
-    async handleSubmit() {
+    async handleSubmit(event) {
+        event.preventDefault();
         const email = this.emailInput.value.trim();
-        const password = this.passwordInput.value;
+        const password = this.passwordInput.value.trim();
 
-        // Limpa mensagens de erro e desabilita o botão para evitar múltiplos cliques
+        if (!this.validateInputs(email, password)) {
+            return;
+        }
+
         this.disableForm();
 
         try {
-            // Verifica se a validação básica do formulário foi bem-sucedida
-            if (!this.validateInputs(email, password)) {
-                return;
-            }
-
-            const response = await fetch(this.loginUrl, {
+            const response = await fetch('http://localhost:8080/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, senha: password }),
+                body: JSON.stringify({ email, password })
             });
 
             if (!response.ok) {
-                // Tenta ler uma mensagem de erro do corpo da resposta, se disponível
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.message || 'Credenciais inválidas.');
+                const errorText = await response.text();
+                throw new Error(errorText || 'Erro desconhecido no login.');
             }
 
             const data = await response.json();
-            console.log("Login bem-sucedido:", data);
-            
-            // Aqui você pode salvar o token ou dados do usuário no localStorage
-            // Exemplo: localStorage.setItem('token', data.token);
+            console.log("Login bem-sucedido. Token recebido:", data.token);
 
-            // Redireciona o usuário após o login
+            // Armazene o token de autenticação para uso futuro
+            localStorage.setItem('auth_token', data.token);
+
             alert("Login realizado com sucesso! Redirecionando...");
-            window.location.href = '../index.html'; 
+            window.location.href = '../index.html';
 
         } catch (error) {
             console.error("Erro no login:", error);
@@ -70,7 +51,6 @@ class LoginForm {
     }
 
     validateInputs(email, password) {
-        // Implementa a validação de email e senha
         if (!this.validateEmail(email)) {
             this.showError("Por favor, insira um email válido.");
             return false;
@@ -107,7 +87,6 @@ class LoginForm {
     }
 
     showError(message) {
-        // Exibe a mensagem de erro para o usuário
         alert(message);
     }
 
@@ -116,7 +95,6 @@ class LoginForm {
     }
 }
 
-// Inicializa a classe quando o DOM estiver carregado
 document.addEventListener("DOMContentLoaded", () => {
     new LoginForm("form");
 });

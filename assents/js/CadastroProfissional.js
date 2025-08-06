@@ -19,7 +19,7 @@ function cadastrar(event) {
     }
 
     if (senha.length < 6) {
-        alert("Senha deve ter pelo menos 6 caracteres.");
+        alert("A senha deve ter pelo menos 6 caracteres.");
         return;
     }
 
@@ -27,7 +27,7 @@ function cadastrar(event) {
     submitBtn.disabled = true;
     submitBtn.textContent = "Cadastrando...";
 
-    fetch('http://localhost:8080/api/profissional', {
+    fetch('http://localhost:8080/auth/register/profissional', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,12 +38,11 @@ function cadastrar(event) {
             "cpf": cpf,
             "especialidade": especialidade,
             "certificado": certificado,
-            "senha": senha
+            "password": senha
         })
     })
         .then(response => {
             if (!response.ok) {
-                // Se a resposta não for OK, lança um erro para ser pego pelo .catch()
                 throw new Error(`Erro na requisição: ${response.statusText}`);
             }
             return response.json();
@@ -51,7 +50,6 @@ function cadastrar(event) {
         .then(data => {
             console.log("Resposta da API:", data);
             alert("Profissional cadastrado com sucesso! Você será redirecionado.");
-
             window.location.href = '../index.html';
         })
         .catch(error => {

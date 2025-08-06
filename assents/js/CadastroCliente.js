@@ -19,7 +19,7 @@ function cadastrar(event) {
     }
 
     if (senha.length < 6) {
-        alert("Senha deve ter pelo menos 6 caracteres.");
+        alert("A senha deve ter pelo menos 6 caracteres.");
         return;
     }
 
@@ -29,16 +29,15 @@ function cadastrar(event) {
     submitBtn.textContent = "Cadastrando...";
 
 
-    fetch('http://localhost:8080/api/usuarios', {
+    fetch('http://localhost:8080/auth/register/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            "nome": nome,
-            "cpf": cpf,
+            "name": nome,
             "email": email,
-            "senha": senha
+            "password": senha
         })
     })
         .then(response => {
@@ -49,7 +48,7 @@ function cadastrar(event) {
         })
         .then(data => {
             console.log("Resposta da API:", data);
-            alert("Usuario cadastrado com sucesso!");
+            alert("Usuário cadastrado com sucesso!");
 
             document.getElementById('idnome').value = "";
             document.getElementById('idcpf').value = "";
