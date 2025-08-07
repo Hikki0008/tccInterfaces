@@ -579,3 +579,70 @@ section h3 {
         width: 100%;
     }
 }
+/* Estilos para a seção de agendamentos */
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appointment-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid var(--medium-gray);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.appointment-card .appointment-details {
+    flex-grow: 1;
+}
+
+.appointment-card .appointment-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0 0 5px 0;
+}
+
+.appointment-card .appointment-info {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.appointment-card .appointment-info i {
+    color: var(--secondary-color);
+}
+
+.appointment-card .appointment-actions {
+    display: flex;
+    align-items: center;
+}
+
+.appointment-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: white;
+}
+
+/* Cores dos status */
+.status-confirmado {
+    background-color: #28a745; /* Verde */
+}
+
+.status-pendente {
+    background-color: #ffc107; /* Amarelo */
+}
+
+.status-cancelado {
+    background-color: #dc3545; /* Vermelho */
+}

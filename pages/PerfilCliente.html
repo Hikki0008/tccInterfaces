@@ -6,49 +6,71 @@
     <title>Meu Perfil de Cliente - AgeCare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="../assents/css/PerfilCliente.css">
+    <link rel="stylesheet" href="../assents/css/agendamentos.css">
 </head>
 <body>
 
-    <div class="container">
-        <aside class="profile-sidebar">
-            <img src="https://i.ibb.co/pPz7y4f/client1.jpg" alt="Foto da Cliente" class="profile-pic">
-            <h1 id="cliente-nome">Carregando...</h1>
-            <p class="role">Cliente</p>
-            
-            <div class="contact-info">
-                <h3>Informações de Contato</h3>
-                <p><i class="fas fa-envelope"></i> <span id="cliente-email">Carregando...</span></p>
-                <p><i class="fas fa-phone"></i> <span id="cliente-telefone">Carregando...</span></p>
+<div class="container">
+    <aside class="profile-sidebar">
+        <img src="https://i.ibb.co/pPz7y4f/client1.jpg" alt="Foto da Cliente" class="profile-pic">
+        <h1 id="cliente-nome">Carregando...</h1>
+        <p class="role">Cliente</p>
+
+        <div class="contact-info">
+            <h3>Informações de Contato</h3>
+            <p><i class="fas fa-envelope"></i> <span id="cliente-email">Carregando...</span></p>
+            <p><i class="fas fa-phone"></i> <span id="cliente-telefone">Carregando...</span></p>
+        </div>
+
+        <a href="#" class="edit-button">Editar Perfil</a>
+    </aside>
+
+    <main class="main-content">
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Meus Pacientes</h2>
             </div>
-            
-            <a href="#" class="edit-button">Editar Perfil</a>
-        </aside>
+            <div class="patients-grid" id="patients-list-container">
+                <button type="button" class="patient-card-button add-new" id="abrir-modal-paciente">
+                    <div class="add-icon"><i class="fas fa-user-plus"></i></div>
+                    <h3>Adicionar Novo</h3>
+                </button>
+            </div>
+        </section>
 
-        <main class="main-content">
-            
-            <section class="content-section">
-                <div class="section-header">
-                    <h2>Meus Pacientes</h2>
-                    <a href="RegistrarPaciente.html" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Paciente</a>
-                </div>
-                <div class="patients-grid" id="patients-list-container">
-                    <a href="#" class="patient-card-link">
-                        <div class="patient-card add-new">
-                            <div class="add-icon"><i class="fas fa-user-plus"></i></div>
-                            <h3>Adicionar Novo</h3>
-                        </div>
-                    </a>
-                </div>
-            </section>
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Meus Endereços de Atendimento</h2>
+                <a href="CadastrarEndereco.html" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Endereço</a>
+            </div>
+            <div class="address-list" id="address-list-container">
+            </div>
+        </section>
 
-            <section class="content-section">
-                <div class="section-header">
-                    <h2>Meus Endereços de Atendimento</h2>
-                    <a href="CadastrarEndereco.html" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar Endereço</a>
-                </div>
-                <div class="address-list" id="address-list-container">
-                    </div>
-            </section>
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Meus Agendamentos</h2>
+                <a href="CadastrarAgendamento.html" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Agendamento</a>
+            </div>
+            <div class="appointments-list" id="appointments-list-container">
+                <p>Carregando agendamentos...</p>
+            </div>
+        </section>
 
-        </main>
+    </main>
+</div>
+
+<div id="paciente-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h3>Como você gostaria de adicionar um paciente?</h3>
+        <div class="modal-options">
+            <button id="opcao-eu-paciente" class="btn btn-secondary">Eu sou o Paciente</button>
+            <button id="opcao-novo-paciente" class="btn btn-secondary">Quero adicionar um Paciente</button>
+        </div>
     </div>
+</div>
+<script type="module" src="../assents/js/PerfilCliente.js"></script>
+</body>
+</html>

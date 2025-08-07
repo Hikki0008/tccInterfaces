@@ -106,22 +106,12 @@
         <div class="help-info">
             <h4>Precisando de ajuda?</h4>
             <p>Acesse nossa Central de Ajuda ou entre em contato.</p>
+            <a href="Contatos.html">Fale conosco</a>
         </div>
     </div>
 </footer>
-
-<script>
-    // Script para o acordeão do FAQ
-    document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-            const faqAnswer = faqItem.querySelector('.faq-answer');
-            const icon = button.querySelector('i');
-
-            faqItem.classList.toggle('active');
-
-            if (faqItem.classList.contains('active')) {
-                faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                faqAnswer.style.
+<div id="toast-notifications-container"></div>
+<script src="../assents/js/NotificacoesPopup.js"></script>
+<script src="../assents/js/Suporte.js"></script>
+</body>
+</html>

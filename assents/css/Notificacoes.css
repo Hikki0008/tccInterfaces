@@ -1,0 +1,65 @@
+/* Notificacoes.css */
+
+.notifications-section h3 {
+    font-size: 24px;
+    color: #1c3d5a;
+    border-bottom: 2px solid #208ee7; /* Azul da sua paleta */
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.notification-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notification-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notification-icon {
+    font-size: 28px;
+    color: #208ee7; /* Ícone azul para agendamento */
+}
+
+.notification-icon.report {
+    color: #28a745; /* Ícone verde para relatório */
+}
+
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1c3d5a;
+    margin: 0 0 5px 0;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.notification-date {
+    font-size: 12px;
+    color: #999;
+    align-self: flex-end;
+}

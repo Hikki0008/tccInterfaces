@@ -1,0 +1,67 @@
+/* Container que fixa as notificações no canto inferior direito */
+#toast-notifications-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+/* Estilo do card pop-up */
+.toast-notification-card {
+    background-color: #fff;
+    border: 1px solid #208ee7; /* Borda da cor principal */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0; /* Começa invisível para a animação */
+    transform: translateX(100%); /* Começa fora da tela */
+    animation: slide-in 0.5s ease-out forwards, fade-out 0.5s ease-out 4.5s forwards;
+}
+
+.toast-notification-card .notification-icon {
+    font-size: 24px;
+    color: #208ee7;
+}
+
+.toast-notification-card .notification-content {
+    flex-grow: 1;
+}
+
+.toast-notification-card .notification-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1c3d5a;
+    margin: 0;
+}
+
+.toast-notification-card .notification-message {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+/* Animações de entrada e saída */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}

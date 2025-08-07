@@ -2,7 +2,6 @@
 
 import { makeAuthenticatedRequest } from './api.js';
 
-// --- URL Base da API do Backend ---
 const API_BASE_URL = 'http://localhost:8080/api';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,20 +14,54 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     carregarDadosDoCliente(clienteId);
+
+    const pacienteModal = document.getElementById('paciente-modal');
+    const abrirModalBtn = document.getElementById('abrir-modal-paciente');
+    const fecharModalBtn = pacienteModal.querySelector('.close-button');
+    const opcaoEuPacienteBtn = document.getElementById('opcao-eu-paciente');
+    const opcaoNovoPacienteBtn = document.getElementById('opcao-novo-paciente');
+
+    abrirModalBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        pacienteModal.style.display = 'block';
+    });
+
+    fecharModalBtn.addEventListener('click', () => {
+        pacienteModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === pacienteModal) {
+            pacienteModal.style.display = 'none';
+        }
+    });
+
+    opcaoNovoPacienteBtn.addEventListener('click', () => {
+        window.location.href = `RegistrarPaciente.html?responsavelId=${clienteId}`;
+    });
+
+    opcaoEuPacienteBtn.addEventListener('click', () => {
+        if (confirm("Você deseja realmente se registrar como paciente? Seus dados serão utilizados para o cadastro.")) {
+            registrarProprioPaciente(clienteId);
+        }
+    });
 });
 
 async function carregarDadosDoCliente(id) {
     try {
-        // --- Requisições Autenticadas ---
-        const [cliente, pacientes, enderecos] = await Promise.all([
+        const [cliente, pacientes, enderecos, agendamentos] = await Promise.all([
             makeAuthenticatedRequest(`${API_BASE_URL}/usuarios/${id}`),
             makeAuthenticatedRequest(`${API_BASE_URL}/usuarios/${id}/pacientes`),
-            makeAuthenticatedRequest(`${API_BASE_URL}/usuarios/${id}/enderecos`)
+            makeAuthenticatedRequest(`${API_BASE_URL}/usuarios/${id}/enderecos`),
+            // NOVA REQUISIÇÃO: busca agendamentos do usuário
+            makeAuthenticatedRequest(`${API_BASE_URL}/usuarios/${id}/agendamentos`)
         ]);
 
         preencherDadosCliente(cliente);
         preencherListaPacientes(pacientes);
         preencherListaEnderecos(enderecos);
+        // NOVA CHAMADA: para exibir a lista de agendamentos
+        preencherListaAgendamentos(agendamentos);
 
     } catch (error) {
         console.error('Erro ao carregar dados do perfil:', error);
@@ -44,7 +77,8 @@ function preencherDadosCliente(cliente) {
 
 function preencherListaPacientes(pacientes) {
     const container = document.getElementById('patients-list-container');
-    const addCard = container.querySelector('.add-new').parentNode;
+    // Encontra o card de adicionar novo paciente
+    const addCard = document.getElementById('abrir-modal-paciente');
     container.innerHTML = '';
 
     if (pacientes.length === 0) {
@@ -66,6 +100,7 @@ function preencherListaPacientes(pacientes) {
             container.appendChild(link);
         });
     }
+    // Adiciona o card "Adicionar Novo" no final
     container.appendChild(addCard);
 }
 
@@ -95,4 +130,55 @@ function preencherListaEnderecos(enderecos) {
         `;
         container.appendChild(card);
     });
+}
+
+// NOVA FUNÇÃO: para renderizar a lista de agendamentos
+function preencherListaAgendamentos(agendamentos) {
+    const container = document.getElementById('appointments-list-container');
+    container.innerHTML = '';
+
+    if (agendamentos.length === 0) {
+        container.innerHTML = '<p>Nenhum agendamento encontrado.</p>';
+        return;
+    }
+
+    agendamentos.forEach(agendamento => {
+        const card = document.createElement('div');
+        card.className = 'appointment-card';
+        card.innerHTML = `
+            <div class="appointment-details">
+                <h4 class="appointment-title">Agendamento para ${agendamento.paciente.nome}</h4>
+                <p class="appointment-info"><i class="far fa-calendar-alt"></i> Data: ${agendamento.data}</p>
+                <p class="appointment-info"><i class="far fa-clock"></i> Horário: ${agendamento.hora}</p>
+                <p class="appointment-info"><i class="fas fa-notes-medical"></i> Serviço: ${agendamento.servico}</p>
+                <p class="appointment-info"><i class="fas fa-user-md"></i> Profissional: ${agendamento.profissional.nome}</p>
+            </div>
+            <div class="appointment-actions">
+                <span class="appointment-status status-${agendamento.status.toLowerCase()}">${agendamento.status}</span>
+                </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+async function registrarProprioPaciente(clienteId) {
+    try {
+        const response = await makeAuthenticatedRequest(`${API_BASE_URL}/pacientes/registrar-proprio-paciente`, {
+            method: 'POST',
+            body: JSON.stringify({ usuarioId: clienteId }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response) {
+            alert('Você foi registrado como paciente com sucesso!');
+            document.getElementById('paciente-modal').style.display = 'none';
+            carregarDadosDoCliente(clienteId);
+        }
+
+    } catch (error) {
+        console.error('Erro ao registrar como paciente:', error);
+        alert(`Erro: ${error.message}`);
+    }
 }

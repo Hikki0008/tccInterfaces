@@ -130,6 +130,8 @@ body {
     color: var(--white-color);
     text-decoration: none;
     padding: 8px 15px;
+    border: none;
+    cursor: pointer;
     border-radius: 8px;
     font-weight: 500;
     display: flex;
@@ -250,9 +252,108 @@ body {
     color: var(--danger-color);
 }
 
+/* Estilos do Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.modal-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-options .btn-secondary {
+    width: 100%;
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    padding: 12px 20px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+.modal-options .btn-secondary:hover {
+    background-color: #d1d1d1;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover, .close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
     .container {
         grid-template-columns: 1fr;
     }
+}
+/* Estilos para o novo botão */
+.patient-card-button {
+    /* Reseta estilos padrão do navegador */
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 0;
+
+    /* Aplica os mesmos estilos do patient-card original */
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.patient-card-button:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+.patient-card-button.add-new {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: dashed;
+    border-width: 2px;
+    color: var(--dark-gray);
+    min-height: 184px; /* Mesma altura para manter o layout */
+}
+.patient-card-button.add-new:hover {
+    background: #f8f9fa;
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
 }
